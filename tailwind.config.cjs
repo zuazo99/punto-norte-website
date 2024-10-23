@@ -26,6 +26,9 @@ module.exports = {
       animation: {
         float: 'float linear 2.5s infinite alternate'
       },
+      letterSpacing: {
+        superwide: '0.2em'
+      },
       keyframes: {
         float: {
             '0%': {

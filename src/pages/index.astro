@@ -1,5 +1,5 @@
 ---
-import NavigationLayout from "~/layouts/NavigationLayout.astro";
+import HomeLayout from "~/layouts/HomeLayout.astro";
 import Compatibility from "~/components/compatibility.astro";
 import Features from "~/components/features.astro";
 import Intro from "~/components/intro.astro";
@@ -7,11 +7,11 @@ import Showcase from "~/components/showcase.astro";
 import "~/styles/index.css";
 ---
 
-<NavigationLayout title="Home Page">
+<HomeLayout title="Home Page">
   <main class="space-y-24 px-8 py-32">
     <Intro />
     <Features />
     <Compatibility />
     <Showcase />
   </main>
-</NavigationLayout>
+</HomeLayout>
