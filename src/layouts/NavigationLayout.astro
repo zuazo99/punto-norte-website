@@ -1,0 +1,15 @@
+---
+import Footer from "~/components/footer.astro";
+import Header from "~/components/header.astro";
+import Splash from "~/components/splash.astro";
+import MainLayout from "./MainLayout.astro";
+
+const { title } = Astro.props;
+---
+
+<MainLayout title={title}>
+  <Header />
+  <Splash />
+  <slot />
+  <Footer />
+</MainLayout>

@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
+        start: "'Press Start 2P'"
       },
       colors: {
         primary: "var(--color-primary)",
@@ -22,6 +23,19 @@ module.exports = {
       borderColor: {
         default: "var(--color-border)",
       },
+      animation: {
+        float: 'float linear 2.5s infinite alternate'
+      },
+      keyframes: {
+        float: {
+            '0%': {
+              transform: 'translate3d(0, 0, 0)'
+            },
+            '100%': {
+              transform: 'translate3d(0, 30px, 0)'
+          }
+        }
+      }
     },
   },
   corePlugins: {
