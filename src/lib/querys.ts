@@ -4,7 +4,7 @@ const SPACE_ID = "ijw8sdaj87dg";
 const ACCESS_TOKEN = "7BszwQR2Y5XyThmASJ2PbKIbYGZ0HjFjluadiGiKuSw";
 const ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}`;
 
-export async function fetchEvents(): Promise<EventsData> {
+export function fetchEvents() {
   const query = `
     query {
       eventsCollection {
@@ -21,6 +21,33 @@ export async function fetchEvents(): Promise<EventsData> {
       }
     }
   `;
+  return queryGraphQL(query)
+}
+
+export function fetchOldEvents() {
+  const now = new Date().toISOString();
+  const query = `
+    query {
+      eventsCollection(
+        where: {date_lte: "${now}"}
+      ) {
+        items {
+          sys {
+            id
+          }
+          name
+          date
+          image {
+            url
+          }
+        }
+      }
+    }
+  `;
+  return queryGraphQL(query)
+}
+
+export async function queryGraphQL(query: string): Promise<EventsData> {
 
   const response = await fetch(ENDPOINT, {
     method: "POST",
