@@ -4,48 +4,6 @@ const SPACE_ID = "ijw8sdaj87dg";
 const ACCESS_TOKEN = "7BszwQR2Y5XyThmASJ2PbKIbYGZ0HjFjluadiGiKuSw";
 const ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}`;
 
-export function fetchEvents() {
-  const query = `
-    query {
-      eventsCollection {
-        items {
-          sys {
-            id
-          }
-          name
-          date
-          image {
-            url
-          }
-        }
-      }
-    }
-  `;
-  return queryGraphQL(query)
-}
-
-export function fetchOldEvents() {
-  const now = new Date().toISOString();
-  const query = `
-    query {
-      eventsCollection(
-        where: {date_lte: "${now}"}
-      ) {
-        items {
-          sys {
-            id
-          }
-          name
-          date
-          image {
-            url
-          }
-        }
-      }
-    }
-  `;
-  return queryGraphQL(query)
-}
 
 export async function queryGraphQL(query: string): Promise<EventsData> {
 
@@ -83,18 +41,7 @@ export async function fetchFutureEvents(fromDate: string): Promise<EventsData> {
       }
     }
   `;
-
-  const response = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${ACCESS_TOKEN}`,
-    },
-    body: JSON.stringify({ query }),
-  });
-
-  const json = await response.json();
-  return json.data;
+  return queryGraphQL(query);
 }
 
 export async function fetchPastEvents(untilDate: string): Promise<EventsData> {
@@ -118,18 +65,7 @@ export async function fetchPastEvents(untilDate: string): Promise<EventsData> {
       }
     }
   `;
-
-  const response = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${ACCESS_TOKEN}`,
-    },
-    body: JSON.stringify({ query }),
-  });
-
-  const json = await response.json();
-  return json.data;
+  return queryGraphQL(query);
 }
 
 export async function fetchEventById(id: string): Promise<any> {
@@ -140,15 +76,5 @@ export async function fetchEventById(id: string): Promise<any> {
       }
     }
   `;
-  const response = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${ACCESS_TOKEN}`,
-    },
-    body: JSON.stringify({ query }),
-  });
-
-  const json = await response.json();
-  return json.data;
+  return queryGraphQL(query);
 }
