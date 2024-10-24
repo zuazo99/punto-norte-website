@@ -6,7 +6,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
-        start: "'Press Start 2P'"
+        start: "'Press Start 2P'",
+        anton: ["'Anton'"],
       },
       colors: {
         primary: "var(--color-primary)",

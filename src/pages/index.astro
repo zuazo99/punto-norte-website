@@ -5,13 +5,18 @@ import Features from "~/components/features.astro";
 import Intro from "~/components/intro.astro";
 import Showcase from "~/components/showcase.astro";
 import "~/styles/index.css";
+
+import Events from "../components/events/events.astro";
+import Partners from "../components/partners.astro";
 ---
 
 <HomeLayout title="Home Page">
   <main class="space-y-24 px-8 py-32">
     <Intro />
+    <Events />
     <Features />
     <Compatibility />
     <Showcase />
+    <Partners />
   </main>
 </HomeLayout>
