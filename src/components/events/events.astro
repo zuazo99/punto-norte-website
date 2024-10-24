@@ -1,5 +1,5 @@
 ---
-import { fetchEvents } from "../../lib/querys";
+import { fetchEvents, fetchOldEvents } from "../../lib/querys";
 import type { Event } from "../../types";
 import EventCard from "./event-card.astro";
 import ContentSection from "../content-section.astro";
@@ -18,7 +18,7 @@ import ContentSection from "../content-section.astro";
 /*interface AstroProps {
   events: Event[];
 }*/
-const events = await fetchEvents();
+const events = await fetchOldEvents();
 const now = new Date();
 const futureEvents = events.eventsCollection.items.filter(
   (event) => new Date(event.date) >= now,
