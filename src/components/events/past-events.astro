@@ -1,47 +1,17 @@
 ---
-import { fetchEvents } from "../../lib/querys";
+import { fetchFutureEvents, fetchPastEvents } from "../../lib/querys";
 import type { Event } from "../../types";
 import EventCard from "./event-card.astro";
 import ContentSection from "../content-section.astro";
 
-/*export async function getStaticProps() {
-  const data = await fetchEvents();
-    const events: Event[] = data.eventsCollection?.items || [];
-
-  return {
-    props: {
-      events,
-    },
-  };
-}*/
-
-/*interface AstroProps {
-  events: Event[];
-}*/
-const events = await fetchEvents();
 const now = new Date();
-const futureEvents = events.eventsCollection.items.filter(
-  (event) => new Date(event.date) >= now,
-);
-const pastEvents = events.eventsCollection.items.filter(
-  (event) => new Date(event.date) < now,
-);
+const pastEvents = await fetchPastEvents(now.toISOString());
 ---
-
-<ContentSection title="Eventos" id="events">
-  <ul class="grid max-w-6xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-    {
-      futureEvents.map((event: Event) => (
-        <EventCard event={event} imageUrl={event.image.url} />
-      ))
-    }
-  </ul>
-</ContentSection>
 
 <ContentSection title="Eventos Pasados" id="past-events">
   <ul class="grid max-w-6xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
     {
-      pastEvents.map((event: Event) => (
+      pastEvents.eventsCollection.items.map((event: Event) => (
         <EventCard event={event} imageUrl={event.image.url} />
       ))
     }
@@ -56,7 +26,7 @@ const pastEvents = events.eventsCollection.items.filter(
       >
         <div class="flex items-stretch gap-3 p-4">
           {
-            pastEvents.map((event: Event) => (
+            pastEvents.eventsCollection.items.map((event: Event) => (
               <div class="flex h-full min-w-60 flex-1 flex-col gap-4 rounded-lg">
                 <div
                   class="flex aspect-[3/4] w-full flex-col rounded-xl bg-cover bg-center bg-no-repeat"
@@ -68,7 +38,6 @@ const pastEvents = events.eventsCollection.items.filter(
                   </p>
                   <p class="font-normal leading-normal text-[#A18249] text-sm">
                     Miércoles 23 | 20:00
-
                   </p>
                 </div>
               </div>

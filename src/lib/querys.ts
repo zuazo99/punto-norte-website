@@ -35,6 +35,76 @@ export async function fetchEvents(): Promise<EventsData> {
   return json.data;
 }
 
+export async function fetchFutureEvents(fromDate: string): Promise<EventsData> {
+  const query = `
+    query {
+      eventsCollection(
+        where: {
+          date_gte: "${fromDate}"
+        }
+      ) {
+        items {
+          sys {
+            id
+          }
+          name
+          date
+          image {
+            url
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await fetch(ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${ACCESS_TOKEN}`,
+    },
+    body: JSON.stringify({ query }),
+  });
+
+  const json = await response.json();
+  return json.data;
+}
+
+export async function fetchPastEvents(untilDate: string): Promise<EventsData> {
+  const query = `
+    query {
+      eventsCollection(
+        where: {
+          date_lt: "${untilDate}"
+        }
+      ) {
+        items {
+          sys {
+            id
+          }
+          name
+          date
+          image {
+            url
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await fetch(ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${ACCESS_TOKEN}`,
+    },
+    body: JSON.stringify({ query }),
+  });
+
+  const json = await response.json();
+  return json.data;
+}
+
 export async function fetchEventById(id: string): Promise<any> {
   const query = `
     query {

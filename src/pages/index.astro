@@ -6,14 +6,17 @@ import Intro from "~/components/intro.astro";
 import Showcase from "~/components/showcase.astro";
 import "~/styles/index.css";
 
-import Events from "../components/events/events.astro";
+import PastEvents from "../components/events/past-events.astro";
+import FutureEvents from "../components/events/future-events.astro";
 import Partners from "../components/partners.astro";
+
 ---
 
 <HomeLayout title="Home Page">
   <main class="space-y-24 px-8 py-32">
     <Intro />
-    <Events />
+    <FutureEvents />
+    <PastEvents />
     <Features />
     <Compatibility />
     <Showcase />
