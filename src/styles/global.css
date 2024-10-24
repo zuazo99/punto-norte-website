@@ -10,3 +10,16 @@ a,
   @apply bg-clip-text text-transparent;
   @apply bg-gradient-to-br from-orange-700 via-amber-400 to-yellow-100;
 }
+
+.bg-gradient {
+  @apply bg-gradient-to-br from-orange-700 via-amber-400 to-yellow-100;
+}
+
+
+@font-face {
+  font-family: 'Good Brush';
+  src: url('../assets/Good Brush.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,13 +1,11 @@
 ---
 import Footer from "~/components/footer.astro";
-import Splash from "~/components/splash.astro";
 import MainLayout from "./MainLayout.astro";
 
 const { title } = Astro.props;
 ---
 
 <MainLayout title={title}>
-  <Splash />
   <slot />
   <Footer />
 </MainLayout>

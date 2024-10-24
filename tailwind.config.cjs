@@ -8,6 +8,7 @@ module.exports = {
         sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
         start: "'Press Start 2P'",
         anton: ["'Anton'"],
+        brush: "'Good Brush'"
       },
       colors: {
         primary: "var(--color-primary)",

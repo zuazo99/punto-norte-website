@@ -8,6 +8,7 @@ import GitHubCorner from "./github-corner.astro";
 
 const widths = [450, 800];
 const sizes = "(min-width: 640px) 42vw, 67vw";
+const heading = ["Punto Norte", "920"];
 ---
 
 <section class="relative h-full bg-black">
@@ -21,11 +22,23 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
       class="flex flex-col items-center gap-2 self-end sm:gap-4 sm:self-auto sm:justify-self-end"
     >
       <Icon name="logomark" class="size-20 text-white md:size-32" />
-      <div
-        class="gradient-text text-center font-extrabold tracking-tighter text-6xl md:text-8xl"
-      >
-        Punto Norte
-        <br /> 920
+      <div class="font-brush text-center text-9xl">
+        <header class="relative">
+          <div class="absolute left-0 top-0 z-10 text-white">
+            {heading.map((line) => (
+              <div>
+                {line}
+              </div>
+            ))}
+          </div>
+          <div class="blur gradient-text ">
+            {heading.map((line) => (
+              <div>
+                {line}
+              </div>
+            ))}
+          </div>
+        </header>
       </div>
     </h2>
     <div

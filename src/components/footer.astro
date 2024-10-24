@@ -1,6 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import HeroImage from "~/components/hero-image.astro";
 import type { FooterLink } from "~/types";
 
 const links: Array<FooterLink> = [
@@ -27,10 +26,7 @@ const links: Array<FooterLink> = [
 ];
 ---
 
-<footer class="relative flex h-64 items-center justify-center">
-  <div class="absolute inset-0 overflow-hidden opacity-40">
-    <HeroImage />
-  </div>
+<footer class="relative flex h-64 items-center justify-center bg-gradient-to-b from-transparent to-white/20">
   <ul class="relative grid grid-cols-2 gap-4 sm:grid-cols-4">
     {
       links.map((link) => (
