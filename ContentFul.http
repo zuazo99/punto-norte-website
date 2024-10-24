@@ -1,0 +1,35 @@
+GRAPHQL https://graphql.contentful.com/content/v1/spaces/ijw8sdaj87dg
+Authorization: Bearer 7BszwQR2Y5XyThmASJ2PbKIbYGZ0HjFjluadiGiKuSw
+
+query {
+  events(id: "4wCBi0wFhPix4ovOk3EPt3") {
+  date
+  }
+}
+
+{
+  "variables": {
+    "id": "4wCBi0wFhPix4ovOk3EPt3"
+  }
+}
+
+###
+GRAPHQL https://graphql.contentful.com/content/v1/spaces/ijw8sdaj87dg
+Authorization: Bearer 7BszwQR2Y5XyThmASJ2PbKIbYGZ0HjFjluadiGiKuSw
+
+query {
+      eventsCollection {
+        items {
+          sys {
+            id
+          }
+          name
+          image {
+            url
+          }
+        }
+      }
+    }
+##
+
+

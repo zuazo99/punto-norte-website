@@ -1,0 +1,48 @@
+---
+import type { Event } from "../../types";
+interface Props {
+  event: Event;
+  imageUrl: string;
+}
+
+const { event, imageUrl } = Astro.props;
+const widths = [450, 800];
+const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
+const imageStyle = {
+  backgroundImage: `url(${imageUrl})`,
+};
+---
+
+<li
+  class="flex h-full w-full flex-col items-center justify-center gap-4 p-6 text-center rounded-lg shadow-lg"
+>
+  <a class="group hover:!text-default" href={event.sys.id}>
+    <figure class="relative h-full w-full overflow-hidden">
+      <div
+        class="m-8 h-full max-w-80 bg-gray-600 bg-cover bg-center py-48 bg-blend-multiply group-hover:bg-blend-normal"
+        style={imageStyle}
+      >
+        <h2 class="uppercase text-white text-4xl group-hover:opacity-0">
+          {event.name}
+        </h2>
+      </div>
+
+      <!--<figcaption class="absolute inset-0">
+        <div
+          class="flex h-full flex-col items-center justify-end gap-2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus:opacity-100"
+        >
+          <p class="border border-current px-4 py-2 text-white">{event.date}</p>
+        </div>
+      </figcaption>-->
+    </figure>
+  </a>
+</li>
+
+
+<script>
+  function handleClick(eventId: string) {
+    window.location.href = `/events/${eventId}`;
+  }
+
+  //document.getElementById("event").addEventListener("click", handleClick());
+</script>
