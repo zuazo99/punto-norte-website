@@ -9,7 +9,7 @@ const pastEvents = await fetchPastEvents(now.toISOString());
 ---
 
 <ContentSection title="Eventos Pasados" id="past-events">
-  <ul class="grid max-w-6xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+  <ul class="grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
     {
       pastEvents.eventsCollection.items.map((event: Event) => (
         <EventCard event={event} imageUrl={event.image.url} />

@@ -7,57 +7,52 @@ interface Props {
 }
 
 const { event, imageUrl } = Astro.props;
-const widths = [450, 800];
-const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
-const imageStyle = {
-  backgroundImage: `url(${imageUrl})`,
-};
 ---
-<li class="flex h-full w-full flex-col items-center justify-center p-4 md:p-6 text-center">
-  <a class="w-full group" href={event.sys.id}>
-    <figure class="relative h-full w-full overflow-hidden rounded-2xl">
-      <div
-          class="h-64 md:h-80 w-full rounded-2xl bg-gray-700 bg-cover bg-center flex items-center justify-center px-4 bg-blend-multiply"
-          style={imageStyle}
-      >
-      <!-- Título centrado -->
-      <h2 class="uppercase text-white text-2xl md:text-3xl font-brush text-center leading-tight">
-        {event.name}
-      </h2>
-      </div>
-    </figure>
-  </a>
+<!--<li class="flex h-full w-full flex-col items-center justify-center p-4 md:p-6 text-center">-->
+<!--  <a class="w-full group" href={event.sys.id}>-->
+<!--    <figure class="relative h-full w-full overflow-hidden rounded-2xl">-->
+<!--      <div-->
+<!--          class="h-64 md:h-80 w-full rounded-2xl bg-gray-700 bg-cover bg-center flex items-center justify-center px-4 bg-blend-multiply"-->
+<!--          style={imageStyle}-->
+<!--      >-->
+<!--      &lt;!&ndash; Título centrado &ndash;&gt;-->
+<!--      <h2 class="uppercase text-white text-2xl md:text-3xl font-brush text-center leading-tight">-->
+<!--        {event.name}-->
+<!--      </h2>-->
+<!--      </div>-->
+<!--    </figure>-->
+<!--  </a>-->
+<!--</li>-->
+<li class="h-full w-full">
+  <ImageGlow id={event.sys.id} imageUrl={imageUrl} title={event.name} />
 </li>
+<!--<li-->
+<!--    class="flex h-full w-full flex-col items-center justify-center gap-4 p-4 md:p-6 text-center"-->
+<!--&gt;-->
+<!--  <a class="w-full group hover:!text-default" href={event.sys.id}>-->
+<!--    <figure class="relative h-full w-full overflow-hidden">-->
+<!--      <div-->
+<!--          class="m-4 md:m-8 h-full w-full max-w-80 group-hover:shadow-amber-50 shadow-lg shadow-cyan-500/50 rounded-2xl bg-gray-700 bg-cover bg-center py-32 md:py-48 bg-blend-multiply transition-transform duration-300 transform hover:scale-105 flex items-center justify-center px-4"-->
+<!--          style={imageStyle}-->
+<!--      >-->
+<!--        &lt;!&ndash; Estilo responsive del título centrado y con salto de línea &ndash;&gt;-->
+<!--        <h2 class="uppercase text-2xl md:text-4xl font-anton text-center leading-tight group-hover:text-primary group-hover:scale-105 transition-all duration-300 break-words">-->
+<!--          {event.name}-->
+<!--        </h2>-->
+<!--      </div>-->
 
-<ImageGlow id={event.sys.id} imageUrl={imageUrl} title={event.name} />
-
-<li
-    class="flex h-full w-full flex-col items-center justify-center gap-4 p-4 md:p-6 text-center"
->
-  <a class="w-full group hover:!text-default" href={event.sys.id}>
-    <figure class="relative h-full w-full overflow-hidden">
-      <div
-          class="m-4 md:m-8 h-full w-full max-w-80 group-hover:shadow-amber-50 shadow-lg shadow-cyan-500/50 rounded-2xl bg-gray-700 bg-cover bg-center py-32 md:py-48 bg-blend-multiply transition-transform duration-300 transform hover:scale-105 flex items-center justify-center px-4"
-          style={imageStyle}
-      >
-        <!-- Estilo responsive del título centrado y con salto de línea -->
-        <h2 class="uppercase text-2xl md:text-4xl font-anton text-center leading-tight group-hover:text-primary group-hover:scale-105 transition-all duration-300 break-words">
-          {event.name}
-        </h2>
-      </div>
-
-      <!--<figcaption class="absolute inset-0">-->
-      <!--  <div-->
-      <!--      class="flex h-full flex-col items-center justify-end gap-2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus:opacity-100"-->
-      <!--  >-->
-      <!--    <p class="border border-current px-3 py-1 md:px-4 md:py-2 text-white bg-black bg-opacity-50 rounded-lg text-sm md:text-base">-->
-      <!--      {event.date}-->
-      <!--    </p>-->
-      <!--  </div>-->
-      <!--</figcaption>-->
-    </figure>
-  </a>
-</li>
+<!--      <figcaption class="absolute inset-0">-->
+<!--        <div-->
+<!--            class="flex h-full flex-col items-center justify-end gap-2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus:opacity-100"-->
+<!--        >-->
+<!--          <p class="border border-current px-3 py-1 md:px-4 md:py-2 text-white bg-black bg-opacity-50 rounded-lg text-sm md:text-base">-->
+<!--            {event.date}-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </figcaption>-->
+<!--    </figure>-->
+<!--  </a>-->
+<!--</li>-->
 
 
 <script>
