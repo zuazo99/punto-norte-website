@@ -31,15 +31,15 @@ function Week({ date }: Props) {
 
   return (
     <div className="flex h-full w-full flex-col justify-evenly bg-neutral-900 font-brush shadow-md text-xl">
-      <header className=" my-2 text-center font-brush font-bold text-4xl">
+      <header className=" my-2 text-center font-brush text-4xl text-white">
         <span className="text-primary">{date.toLocaleString("es", { month: "long" })}</span> /
         <span>{" " + date.getFullYear()}</span>
       </header>
-      <div className="flex justify-start overflow-x-scroll pt-3 md:justify-center">
+      <div className="flex justify-start overflow-x-auto pt-3 md:justify-center">
         {weekdays.map((day) => {
           if (day.selected) {
             return (
-              <div className="light-shadow group relative flex w-16 cursor-pointer content-center justify-center rounded-lg bg-pink-500/30 shadow-lg">
+              <div className="light-shadow group relative flex w-16 cursor-pointer content-center justify-center rounded-lg bg-primary/20 shadow-lg ring-2 ring-primary ring-inset">
                 <span className="absolute -right-1 -top-1 flex h-3 w-3">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary "></span>
                   <span className="relative inline-flex h-3 w-3 rounded-full bg-primary"></span>
@@ -47,7 +47,7 @@ function Week({ date }: Props) {
                 <div className="flex items-center py-4">
                   <div className="text-center">
                     <p className="text-primary text-sm"> {day.name} </p>
-                    <p className="mt-3  font-bold text-primary">
+                    <p className="mt-3 text-primary">
                       {" "}
                       {day.number}{" "}
                     </p>
