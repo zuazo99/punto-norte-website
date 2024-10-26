@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 import astronautImage from "~/assets/astronaut.png";
 import HeroImage from "~/components/hero-image.astro";
 import Starfield from "~/components/starfield.astro";
-import GitHubCorner from "./github-corner.astro";
+import GlowingText from "./glowing-text.astro";
 
 const widths = [450, 800];
 const sizes = "(min-width: 640px) 42vw, 67vw";
@@ -13,7 +13,6 @@ const heading = ["Punto Norte", "920"];
 
 <section class="relative h-full bg-black">
   <Starfield />
-  <!--  GitHubCorner /> -->
   <div id="splash-bg-fallback" class="absolute inset-0 hidden opacity-40">
     <HeroImage />
   </div>
@@ -23,21 +22,8 @@ const heading = ["Punto Norte", "920"];
     >
       <Icon name="logomark" class="size-20 text-white md:size-32" />
       <div class="font-brush text-center text-9xl">
-        <header class="relative">
-          <div class="absolute left-0 top-0 z-10 text-white">
-            {heading.map((line) => (
-              <div>
-                {line}
-              </div>
-            ))}
-          </div>
-          <div class="blur gradient-text ">
-            {heading.map((line) => (
-              <div>
-                {line}
-              </div>
-            ))}
-          </div>
+        <header>
+          <GlowingText text={heading} />
         </header>
       </div>
     </h2>
