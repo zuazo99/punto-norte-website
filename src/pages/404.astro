@@ -5,6 +5,7 @@ import HeroImage from "~/components/hero-image.astro";
 import { Image } from "astro:assets";
 import astronautImage from "~/assets/astronaut.png";
 import "@fontsource/press-start-2p";
+import GlowingText from "~/components/glowing-text.astro";
 const widths = [450, 800];
 const sizes = "(min-width: 640px) 42vw, 67vw";
 ---
@@ -23,12 +24,12 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
           class="space-y-6 text-center font-start font-extrabold tracking-tighter text-2xl md:text-8xl"
         >
           <h1
-            class="gradient-text animate-[float_linear_5s_infinite_alternate_0.2s] tracking-superwide text-9xl"
+            class="animate-[float_linear_5s_infinite_alternate_0.2s] tracking-superwide text-9xl"
           >
-            404
+            <GlowingText text={["404"]} extraClasses="gradient-text" />
           </h1>
-          <h2 class="animate-[float_linear_4s_infinite_alternate] text-white">
-            Not Found
+          <h2 class="animate-[float_linear_4s_infinite_alternate]">
+            <GlowingText text={["Not Found"]} />
           </h2>
         </div>
       </header>

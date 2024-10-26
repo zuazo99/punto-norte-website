@@ -1,0 +1,39 @@
+---
+import MainLayout from "~/layouts/MainLayout.astro";
+import Map from "~/components/events/Map";
+import Week from "~/components/events/Week";
+import Countdown from "~/components/events/Countdown";
+const location = {
+  lat: 37.7749,
+  lng: -122.4194,
+  city: "San Francisco",
+  address: "1234 Market St",
+};
+const image =
+  "https://www.oldskull.net/wp-content/uploads/2015/07/Flore-Maquin-movie-posters-illustration-fight-club-.jpg";
+---
+
+<MainLayout title="Bento">
+  <section class="h-screen w-screen p-24">
+    <div
+      class="grid h-full w-full grid-cols-4 grid-rows-8 gap-4 *:overflow-hidden *:rounded-xl *:border-2 *:border-neutral-700 *:shadow-xl *:transition hover:*:border-primary"
+    >
+      <div class="col-span-3 row-span-4">1</div>
+      <div class="col-span-1 row-span-3">
+        <Week date={new Date()} />
+      </div>
+      <div class="row-span-5">
+        <Map location={location} client:only="react" />
+      </div>
+      <div class="row-span-4">
+        <img class="h-full w-full object-cover" src={image} alt="" />
+      </div>
+      <div class="row-span-2">5</div>
+      <div class="py-1 bg-neutral-900">
+        <Countdown days={2} hours={21} mins={7} secs={34} client:only="react" />
+      </div>
+      <div class="row-span-3">7</div>
+      <div class="row-span-2">8</div>
+    </div>
+  </section>
+</MainLayout>

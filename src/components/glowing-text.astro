@@ -1,0 +1,17 @@
+---
+export interface Props {
+  text: string[];
+  extraClasses?: string;
+}
+
+const { text, extraClasses } = Astro.props;
+---
+
+<div class="relative">
+  <div class={"absolute left-0 top-0 z-10 h-full w-full " + (extraClasses ?? "text-white")}>
+    {text.map((line) => <div>{line}</div>)}
+  </div>
+  <div class="gradient-text blur">
+    {text.map((line) => <div>{line}</div>)}
+  </div>
+</div>

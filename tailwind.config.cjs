@@ -11,7 +11,7 @@ module.exports = {
         brush: "'Good Brush'"
       },
       colors: {
-        primary: "var(--color-primary)",
+        primary: "#ec4899",
         secondary: "var(--color-secondary)",
       },
       textColor: {
