@@ -14,29 +14,35 @@ const imageStyle = {
 ---
 
 <li
-  class="flex h-full w-full flex-col items-center justify-center gap-4 p-6 text-center"
+    class="flex h-full w-full flex-col items-center justify-center gap-4 p-4 md:p-6 text-center"
 >
-  <a class="group hover:!text-default" href={event.sys.id}>
+  <a class="w-full group hover:!text-default" href={event.sys.id}>
     <figure class="relative h-full w-full overflow-hidden">
       <div
-        class="m-8 h-full max-w-80 bg-gray-600 bg-cover bg-center py-48 bg-blend-multiply group-hover:bg-blend-normal"
-        style={imageStyle}
+          class="m-4 md:m-8 h-full w-full max-w-80 rounded-2xl bg-gray-700 bg-cover bg-center py-32 md:py-48 bg-blend-multiply group-hover:bg-blend-normal transition-transform duration-300 transform hover:scale-105"
+          style={imageStyle}
       >
-        <h2 class="uppercase text-white text-4xl group-hover:opacity-0">
+
+        <h2 class="uppercase text-white text-2xl md:text-4xl font-anton group-hover:text-red-600 group-hover:scale-110 transition-all duration-300">
           {event.name}
         </h2>
       </div>
 
+      <!-- Opcional:  -->
       <!--<figcaption class="absolute inset-0">
         <div
-          class="flex h-full flex-col items-center justify-end gap-2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus:opacity-100"
+            class="flex h-full flex-col items-center justify-end gap-2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus:opacity-100"
         >
-          <p class="border border-current px-4 py-2 text-white">{event.date}</p>
+          <p class="border border-current px-3 py-1 md:px-4 md:py-2 text-white bg-black bg-opacity-50 rounded-lg text-sm md:text-base">
+            {event.date}
+          </p>
         </div>
       </figcaption>-->
     </figure>
   </a>
 </li>
+
+
 
 
 <script>
