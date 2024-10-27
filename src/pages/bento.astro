@@ -9,6 +9,8 @@ const location = {
   city: "San Francisco",
   address: "1234 Market St",
 };
+const eventDate = new Date("2024-12-31T23:59:59");
+
 const image =
   "https://www.oldskull.net/wp-content/uploads/2015/07/Flore-Maquin-movie-posters-illustration-fight-club-.jpg";
 ---
@@ -30,7 +32,7 @@ const image =
       </div>
       <div class="row-span-2">5</div>
       <div class="py-1 bg-neutral-900">
-        <Countdown days={2} hours={21} mins={7} secs={34} client:only="react" />
+        <Countdown eventDate={eventDate} client:only="react" />
       </div>
       <div class="row-span-3">7</div>
       <div class="row-span-2">8</div>
