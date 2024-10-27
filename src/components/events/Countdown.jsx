@@ -49,7 +49,7 @@ function Countdown({ eventDate}) {
       }
     }, 1000)
     return () => clearInterval(countdownInterval)
-  }, [targetDate, timeRemaining]);
+  }, [targetDate]);
 
   /*useEffect(() => {
     if (timeRemaining <= 0) return;
