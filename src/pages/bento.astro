@@ -3,6 +3,7 @@ import MainLayout from "~/layouts/MainLayout.astro";
 import Map from "~/components/events/Map";
 import Week from "~/components/events/Week";
 import Countdown from "~/components/events/Countdown";
+import Managers from "~/components/events/managers.astro";
 const location = {
   lat: 37.7749,
   lng: -122.4194,
@@ -11,6 +12,41 @@ const location = {
 };
 const eventDate = new Date("2024-12-31T23:59:59");
 
+const managers = [
+  {
+    image:
+      "https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1.jpeg",
+    position: "Juez",
+    name: "Gaizka Zuazo",
+    instagram: "https://www.instagram.com/gaizkazuazo_/"
+  },
+  {
+    image:
+      "https://i.pinimg.com/474x/ed/5a/27/ed5a277e8ff1f086d1c634e5713a9231.jpg",
+    position: "Juez",
+    name: "Jorge Mentxaka",
+    instagram: "https://www.instagram.com/jorgementx/"
+  },
+  {
+    image:
+      "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg",
+    position: "Juez",
+    name: "Ralph Lauren",
+  },
+  {
+    image:
+      "https://cdn.myanimelist.net/images/voiceactors/2/54280.jpg",
+    position: "Host",
+    name: "Megan Fox",
+  },
+  {
+    image:
+      "https://cdn.myanimelist.net/images/characters/13/29010.jpg",
+    position: "DJ",
+    name: "Alan Walker",
+  },
+];
+
 const image =
   "https://www.oldskull.net/wp-content/uploads/2015/07/Flore-Maquin-movie-posters-illustration-fight-club-.jpg";
 ---
@@ -18,7 +54,8 @@ const image =
 <MainLayout title="Bento">
   <section class="h-screen w-screen p-24">
     <div
-      class="grid h-full w-full grid-cols-4 grid-rows-8 gap-4 *:overflow-hidden *:rounded-xl *:border-2 *:border-neutral-700 *:shadow-xl *:transition hover:*:border-primary"
+      id="bento-grid"
+      class="*:translate-y-[100vh] grid h-full w-full grid-cols-4 grid-rows-8 gap-4 *:overflow-hidden *:rounded-xl *:border-2 *:border-neutral-700 *:shadow-xl *:transition hover:*:border-primary"
     >
       <div class="col-span-3 row-span-4">1</div>
       <div class="col-span-1 row-span-3">
@@ -27,15 +64,30 @@ const image =
       <div class="row-span-5">
         <Map location={location} client:only="react" />
       </div>
-      <div class="row-span-4">
-        <img class="h-full w-full object-cover" src={image} alt="" />
+      <div class="group row-span-4 bg-neutral-900">
+        <img
+          class="mx-auto h-full w-full object-cover transition-all group-hover:w-96"
+          src={image}
+          alt=""
+        />
       </div>
-      <div class="row-span-2">5</div>
-      <div class="py-1 bg-neutral-900">
+      <div class="row-span-4 bg-neutral-900 py-4">
+        <Managers managers={managers} />
+      </div>
+      <div class="bg-neutral-900 py-1">
         <Countdown eventDate={eventDate} client:only="react" />
       </div>
       <div class="row-span-3">7</div>
-      <div class="row-span-2">8</div>
     </div>
   </section>
 </MainLayout>
+
+<script>
+  const children = document.querySelectorAll("#bento-grid>*");
+  children.forEach((child, index) => {
+    const duration = 100 + index * 100;
+    (child as HTMLElement).style.transition = `transform ${duration}ms ease`;
+  });
+
+  document.getElementById("bento-grid")?.classList.remove("*:translate-y-[100vh]");
+</script>

@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+export interface Props {
+  image: string;
+  position: string;
+  name: string;
+  instagram?: string;
+}
+const { image, position, name, instagram } = Astro.props;
+---
+
+<figure>
+  <div
+    class="transition-color group relative aspect-square w-32 overflow-hidden rounded-full outline outline-offset-4 outline-primary/20 duration-200 hover:outline-primary"
+  >
+    {
+      instagram && (
+        <a
+          href={instagram}
+          target="_blank"
+          class="absolute grid h-full w-full translate-y-full place-content-center rounded-full bg-black/10 backdrop-blur-sm transition duration-200 group-hover:-translate-y-0 group-hover:scale-105"
+        >
+          <Icon name="mdi:instagram" class="text-white opacity-95 text-4xl" />
+        </a>
+      )
+    }
+    <img class="h-full w-full object-cover" src={image} alt="" />
+  </div>
+
+  <figcaption class="mt-2 text-center font-brush text-sm">
+    {name}
+    <br />
+    <span class="text-secondary">{position}</span>
+  </figcaption>
+</figure>
