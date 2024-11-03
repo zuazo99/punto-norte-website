@@ -1,5 +1,5 @@
 ---
-import { fetchFutureEvents, fetchPastEvents } from "../../lib/querys";
+import { fetchFutureEvents, fetchPastEvents } from "../../lib/queries";
 import type { Event } from "../../types";
 import EventCard from "./event-card.astro";
 import ContentSection from "../content-section.astro";
@@ -11,7 +11,7 @@ const pastEvents = await fetchPastEvents(now.toISOString());
 <ContentSection title="Eventos Pasados" id="past-events">
   <ul class="grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
     {
-      pastEvents.eventsCollection.items.map((event: Event) => (
+      pastEvents.eventCollection.items.map((event: Event) => (
         <EventCard event={event} imageUrl={event.image.url} />
       ))
     }

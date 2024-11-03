@@ -38,10 +38,10 @@ export interface Event {
   date: string
 }
 
-export interface EventsCollection {
+export interface EventCollection {
   items: Event[];
 }
 
 export interface EventsData {
-  eventsCollection: EventsCollection;
+  eventCollection: EventCollection;
 }
