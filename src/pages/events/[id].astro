@@ -19,7 +19,7 @@ interface EventDetails {
   content: { json: any };
   image: { url: string };
   date: string;
-  location: Location
+  location: Location;
   locationAddress: string;
   locationCity: string;
 }
@@ -66,20 +66,18 @@ const managers = [
   },
 ];
 ---
+
 <MainLayout title="Bento">
   <section class="h-screen w-screen p-24">
     <div
       id="bento-grid"
       class="grid h-full w-full grid-cols-4 grid-rows-8 gap-4 *:translate-y-[100vh] *:overflow-hidden *:rounded-xl *:border-2 *:border-neutral-700 *:shadow-xl hover:*:border-primary"
     >
-      <div class="col-span-3 row-span-4 bg-neutral-900 p-4">
+      <div class="col-span-2 row-span-8 bg-neutral-900 p-4">
         <RichText content={event.content} />
       </div>
-      <div class="col-span-1 row-span-3">
-        <Week date={eventDate} />
-      </div>
-      <div class="row-span-5">
-        <Map location={event.location} city={event.locationCity} address={event.locationAddress} client:only="react" />
+      <div class="bg-neutral-900 py-1">
+        <Countdown eventDate={eventDate} client:only="react" />
       </div>
       <div class="group row-span-4 bg-neutral-900">
         <img
@@ -88,13 +86,20 @@ const managers = [
           alt=""
         />
       </div>
+      <div class="col-span-1 row-span-3">
+        <Week date={eventDate} />
+      </div>
       <div class="row-span-4 bg-neutral-900 py-4">
         <Managers managers={managers} />
       </div>
-      <div class="bg-neutral-900 py-1">
-        <Countdown eventDate={eventDate} client:only="react" />
+      <div class="row-span-4">
+        <Map
+          location={event.location}
+          city={event.locationCity}
+          address={event.locationAddress}
+          client:only="react"
+        />
       </div>
-      <div class="row-span-3">7</div>
     </div>
   </section>
 </MainLayout>
