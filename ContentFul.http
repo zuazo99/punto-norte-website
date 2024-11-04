@@ -1,0 +1,57 @@
+GRAPHQL https://graphql.contentful.com/content/v1/spaces/ijw8sdaj87dg
+Authorization: Bearer 7BszwQR2Y5XyThmASJ2PbKIbYGZ0HjFjluadiGiKuSw
+
+query {
+  event(id: "4wCBi0wFhPix4ovOk3EPt3") {
+  date
+  }
+}
+
+{
+  "variables": {
+    "id": "4wCBi0wFhPix4ovOk3EPt3"
+  }
+}
+
+###
+GRAPHQL https://graphql.contentful.com/content/v1/spaces/ijw8sdaj87dg
+Authorization: Bearer 7BszwQR2Y5XyThmASJ2PbKIbYGZ0HjFjluadiGiKuSw
+
+query {
+      eventCollection {
+        items {
+          sys {
+            id
+          }
+          name
+          image {
+            url
+          }
+        }
+      }
+    }
+##
+
+###
+GRAPHQL https://graphql.contentful.com/content/v1/spaces/ijw8sdaj87dg
+Authorization: Bearer 7BszwQR2Y5XyThmASJ2PbKIbYGZ0HjFjluadiGiKuSw
+
+query {
+  eventCollection(
+    where: {
+    date_gte: "2024-09-05T00:00:00.000+02:00"
+    }
+  ) {
+    items {
+      sys {
+        id
+      }
+      name
+      date
+      image {
+        url
+      }
+    }
+  }
+}
+

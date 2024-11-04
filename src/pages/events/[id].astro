@@ -1,0 +1,114 @@
+---
+import MainLayout from "~/layouts/MainLayout.astro";
+import Map from "~/components/events/Map";
+import Week from "~/components/events/Week";
+import Countdown from "~/components/events/Countdown";
+import Managers from "~/components/events/managers.astro";
+import RichText from "~/components/events/richText.astro";
+import { fetchEventById } from "~/lib/queries";
+
+export const prerender = false;
+
+interface Location {
+  lat: number;
+  lon: number;
+}
+
+interface EventDetails {
+  name: string;
+  content: { json: any };
+  image: { url: string };
+  date: string;
+  location: Location
+  locationAddress: string;
+  locationCity: string;
+}
+
+interface EventResponse {
+  event: EventDetails;
+}
+
+const id = "55d79SukLiaGaFHF0VkDPI";
+// const { id } = Astro.params;
+
+const { event }: EventResponse = await fetchEventById(id);
+const eventDate = new Date(event.date);
+const managers = [
+  {
+    image:
+      "https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1.jpeg",
+    position: "Juez",
+    name: "Gaizka Zuazo",
+    instagram: "https://www.instagram.com/gaizkazuazo_/",
+  },
+  {
+    image:
+      "https://i.pinimg.com/474x/ed/5a/27/ed5a277e8ff1f086d1c634e5713a9231.jpg",
+    position: "Juez",
+    name: "Jorge Mentxaka",
+    instagram: "https://www.instagram.com/jorgementx/",
+  },
+  {
+    image:
+      "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg",
+    position: "Juez",
+    name: "Ralph Lauren",
+  },
+  {
+    image: "https://cdn.myanimelist.net/images/voiceactors/2/54280.jpg",
+    position: "Host",
+    name: "Megan Fox",
+  },
+  {
+    image: "https://cdn.myanimelist.net/images/characters/13/29010.jpg",
+    position: "DJ",
+    name: "Alan Walker",
+  },
+];
+---
+<MainLayout title="Bento">
+  <section class="h-screen w-screen p-24">
+    <div
+      id="bento-grid"
+      class="grid h-full w-full grid-cols-4 grid-rows-8 gap-4 *:translate-y-[100vh] *:overflow-hidden *:rounded-xl *:border-2 *:border-neutral-700 *:shadow-xl hover:*:border-primary"
+    >
+      <div class="col-span-3 row-span-4 bg-neutral-900 p-4">
+        <RichText content={event.content} />
+      </div>
+      <div class="col-span-1 row-span-3">
+        <Week date={eventDate} />
+      </div>
+      <div class="row-span-5">
+        <Map location={event.location} city={event.locationCity} address={event.locationAddress} client:only="react" />
+      </div>
+      <div class="group row-span-4 bg-neutral-900">
+        <img
+          class="mx-auto h-full w-full object-cover transition-all group-hover:w-96"
+          src={event.image.url}
+          alt=""
+        />
+      </div>
+      <div class="row-span-4 bg-neutral-900 py-4">
+        <Managers managers={managers} />
+      </div>
+      <div class="bg-neutral-900 py-1">
+        <Countdown eventDate={eventDate} client:only="react" />
+      </div>
+      <div class="row-span-3">7</div>
+    </div>
+  </section>
+</MainLayout>
+
+<script>
+  const children = document.querySelectorAll("#bento-grid>*");
+  children.forEach((child, index) => {
+    const duration = 100 + index * 100;
+    (child as HTMLElement).style.transition = `transform ${duration}ms ease`;
+  });
+
+  setTimeout(() => {
+    document
+      .getElementById("bento-grid")
+      ?.classList.remove("*:translate-y-[100vh]");
+  });
+</script>

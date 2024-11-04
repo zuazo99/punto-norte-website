@@ -1,0 +1,54 @@
+---
+import { fetchFutureEvents } from "../../lib/queries";
+import type { Event } from "../../types";
+import EventCard from "./event-card.astro";
+import ContentSection from "../content-section.astro";
+
+const now = new Date();
+const futureEvents = await fetchFutureEvents(now.toISOString());
+---
+
+<ContentSection title="Eventos" id="events">
+  {
+    futureEvents.eventCollection.items.length < 1 && (
+      <>
+        <p> Proximamente... </p>
+      </>
+    )
+  }
+  <ul class="grid max-w-6xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+    {
+      futureEvents.eventCollection.items.map((event: Event) => (
+        <EventCard event={event} imageUrl={event.image.url} />
+      ))
+    }
+  </ul>
+  <div class="flex size-full flex-col justify-between overflow-x-hidden">
+    <div>
+      <div
+        class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        <div class="flex items-stretch gap-3 p-4">
+          {
+            futureEvents.eventCollection.items.map((event: Event) => (
+              <div class="flex h-full min-w-60 flex-1 flex-col gap-4 rounded-lg">
+                <div
+                  class="flex aspect-[3/4] w-full flex-col rounded-xl bg-cover bg-center bg-no-repeat"
+                  style={`background-image: url(${event.image.url});`}
+                />
+                <div>
+                  <p class="font-medium leading-normal text-base">
+                    {event.name}
+                  </p>
+                  <p class="font-normal leading-normal text-[#A18249] text-sm">
+                    Miércoles 23 | 20:00
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</ContentSection>

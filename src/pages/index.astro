@@ -1,201 +1,26 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import PastEvents from "../components/PastEvents.astro";
-import UpComingEvents from "../components/UpComingEvents.astro";
-import ComingSoon from "../components/ComingSoon.astro";
-import Header from "../components/Header.astro";
+import HomeLayout from "~/layouts/HomeLayout.astro";
+import Compatibility from "~/components/compatibility.astro";
+import Features from "~/components/features.astro";
+import Splash from "~/components/splash.astro";
+import Intro from "~/components/intro.astro";
+import Showcase from "~/components/showcase.astro";
+
+import PastEvents from "../components/events/past-events.astro";
+import FutureEvents from "../components/events/future-events.astro";
+import Partners from "../components/partners.astro";
+
 ---
 
-<Layout title="Punto Norte">
-	<main>
-		<div class="relative flex size-full min-h-screen flex-col bg-[#111418] dark group/design-root overflow-x-hidden" style='font-family: "Spline Sans", "Noto Sans", sans-serif;'>
-			<div class="layout-container flex h-full grow flex-col">
-				<Header/>
-				<div class="px-40 flex flex-1 justify-center py-5">
-					<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-						<div class="@container">
-							<div class="@[480px]:p-4">
-								<div
-									class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4"
-									style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://cdn.usegalileo.ai/sdxl10/8da4ab0f-9290-4ea1-9a76-9d28f98eac8b.png");'
-								>
-									<div class="flex flex-col gap-2 text-center">
-										<h1
-											class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]"
-										>
-											Punto Norte
-										</h1>
-										<h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">The world's best hip hop events</h2>
-									</div>
-									<label class="flex flex-col min-w-40 h-14 w-full max-w-[480px] @[480px]:h-16">
-										<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
-											<div
-												class="text-[#9dabb8] flex border border-[#3c4753] bg-[#1c2126] items-center justify-center pl-[15px] rounded-l-lg border-r-0"
-												data-icon="MagnifyingGlass"
-												data-size="20px"
-												data-weight="regular"
-											>
-												<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-													<path
-														d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-													></path>
-												</svg>
-											</div>
-											<input
-												placeholder="Search"
-												class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#3c4753] bg-[#1c2126] focus:border-[#3c4753] h-full placeholder:text-[#9dabb8] px-[15px] rounded-r-none border-r-0 pr-2 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal"
-												value=""
-											/>
-											<div class="flex items-center justify-center rounded-r-lg border-l-0 border border-[#3c4753] bg-[#1c2126] pr-[7px]">
-												<button
-													class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#378fe6] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
-												>
-													<span class="truncate">Go</span>
-												</button>
-											</div>
-										</div>
-									</label>
-								</div>
-							</div>
-						</div>
-						<PastEvents/>
-						<UpComingEvents/>
-						<div class="@container">
-							<div class="flex flex-col justify-end gap-6 px-4 py-10 @[480px]:gap-8 @[480px]:px-10 @[480px]:py-20">
-								<div class="flex flex-col gap-2 text-center">
-									<h1
-										class="text-white tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]"
-									>
-										Want to stay in the loop?
-									</h1>
-									<p class="text-white text-base font-normal leading-normal max-w-[720px">Sign up for our newsletter and never miss a beat.</p>
-								</div>
-								<div class="flex flex-1 justify-center">
-									<div class="flex justify-center">
-										<button
-											class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#378fe6] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] grow"
-										>
-											<span class="truncate">View all events</span>
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<ComingSoon/>
-						<footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
-							<div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
-								<a class="text-[#9dabb8] text-base font-normal leading-normal min-w-40" href="#">About</a>
-								<a class="text-[#9dabb8] text-base font-normal leading-normal min-w-40" href="#">Careers</a>
-								<a class="text-[#9dabb8] text-base font-normal leading-normal min-w-40" href="#">Press</a>
-								<a class="text-[#9dabb8] text-base font-normal leading-normal min-w-40" href="#">Artists</a>
-								<a class="text-[#9dabb8] text-base font-normal leading-normal min-w-40" href="#">Developers</a>
-								<a class="text-[#9dabb8] text-base font-normal leading-normal min-w-40" href="#">Brands</a>
-								<a class="text-[#9dabb8] text-base font-normal leading-normal min-w-40" href="#">Investors</a>
-								<a class="text-[#9dabb8] text-base font-normal leading-normal min-w-40" href="#">Vendors</a>
-								<a class="text-[#9dabb8] text-base font-normal leading-normal min-w-40" href="#">Sponsors</a>
-							</div>
-							<div class="flex flex-wrap justify-center gap-4">
-								<a href="#">
-									<div class="text-[#9dabb8]" data-icon="TwitterLogo" data-size="24px" data-weight="regular">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-											<path
-												d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"
-											></path>
-										</svg>
-									</div>
-								</a>
-								<a href="#">
-									<div class="text-[#9dabb8]" data-icon="InstagramLogo" data-size="24px" data-weight="regular">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-											<path
-												d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"
-											></path>
-										</svg>
-									</div>
-								</a>
-								<a href="#">
-									<div class="text-[#9dabb8]" data-icon="FacebookLogo" data-size="24px" data-weight="regular">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-											<path
-												d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"
-											></path>
-										</svg>
-									</div>
-								</a>
-								<a href="#">
-									<div class="text-[#9dabb8]" data-icon="YoutubeLogo" data-size="24px" data-weight="regular">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-											<path
-												d="M164.44,121.34l-48-32A8,8,0,0,0,104,96v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,145.05V111l25.58,17ZM234.33,69.52a24,24,0,0,0-14.49-16.4C185.56,39.88,131,40,128,40s-57.56-.12-91.84,13.12a24,24,0,0,0-14.49,16.4C19.08,79.5,16,97.74,16,128s3.08,48.5,5.67,58.48a24,24,0,0,0,14.49,16.41C69,215.56,120.4,216,127.34,216h1.32c6.94,0,58.37-.44,91.18-13.11a24,24,0,0,0,14.49-16.41c2.59-10,5.67-28.22,5.67-58.48S236.92,79.5,234.33,69.52Zm-15.49,113a8,8,0,0,1-4.77,5.49c-31.65,12.22-85.48,12-86,12H128c-.54,0-54.33.2-86-12a8,8,0,0,1-4.77-5.49C34.8,173.39,32,156.57,32,128s2.8-45.39,5.16-54.47A8,8,0,0,1,41.93,68c30.52-11.79,81.66-12,85.85-12h.27c.54,0,54.38-.18,86,12a8,8,0,0,1,4.77,5.49C221.2,82.61,224,99.43,224,128S221.2,173.39,218.84,182.47Z"
-											></path>
-										</svg>
-									</div>
-								</a>
-							</div>
-						</footer>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
-</Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		//width: 800px;
-		//max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style>
+<HomeLayout title="Home Page">
+  <Splash />
+  <main class="space-y-24 px-8 py-32">
+    <Intro />
+    <FutureEvents />
+    <PastEvents />
+    <Features />
+    <Compatibility />
+    <Showcase />
+    <Partners />
+  </main>
+</HomeLayout>

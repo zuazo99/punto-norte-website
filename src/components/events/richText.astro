@@ -1,0 +1,13 @@
+---
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+
+const {content} = Astro.props
+---
+
+<section class="h-full overflow-auto">
+
+  <article
+    class="prose lg:prose-xl dark:prose-invert prose-headings:text-primary prose-headings:font-brush prose-headings:font-normal prose-a:text-secondary container mx-auto"
+    set:html={documentToHtmlString(content.json)}
+  />
+</section>

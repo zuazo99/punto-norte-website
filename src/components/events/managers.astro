@@ -1,0 +1,34 @@
+---
+import { Icon } from "astro-icon/components";
+import Instaimage from "./instaimage.astro";
+
+interface Manager {
+  image: string;
+  position: string;
+  name: string;
+  instagram?: string;
+}
+
+export interface Props {
+  managers: Manager[];
+}
+
+const { managers } = Astro.props;
+---
+
+<section class="h-full w-full overflow-auto p-4">
+  <ul class="flex w-full flex-wrap justify-center gap-6">
+    {
+      managers.map((manager) => (
+        <li>
+          <Instaimage
+            image={manager.image}
+            position={manager.position}
+            name={manager.name}
+            instagram={manager.instagram}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</section>
