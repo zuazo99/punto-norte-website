@@ -12,7 +12,7 @@ module.exports = {
       },
       colors: {
         primary: "#ec4899",
-        secondary: "var(--color-secondary)",
+        secondary: "#14b8a6",
       },
       textColor: {
         default: "var(--color-text)",
@@ -46,5 +46,5 @@ module.exports = {
   corePlugins: {
     fontSize: false,
   },
-  plugins: [require("tailwindcss-fluid-type")],
+  plugins: [require('@tailwindcss/typography'), require("tailwindcss-fluid-type")],
 };

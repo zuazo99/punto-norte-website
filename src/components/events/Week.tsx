@@ -60,7 +60,7 @@ function Week({ date }: Props) {
               <div className="hover-light-shadow group flex w-16 cursor-pointer justify-center rounded-lg	transition-all	 duration-300  ">
                 <div className="flex items-center py-4">
                   <div className="text-center">
-                    <p className="text-white transition-all duration-300 text-sm	">
+                    <p className="text-secondary transition-all duration-300 text-sm	">
                       {day.name}
                     </p>
                     <p className="mt-3 text-white transition-all duration-300 	">
