@@ -29,11 +29,9 @@ function Map({ location, city, address }: MapProps) {
   return (
     <div id="map" className="h-full w-full overflow-hidden">
       {(address || city) && (
-        <header className="absolute z-[450] h-full w-full bg-gradient-to-b from-secondary/80 via-transparent to-transparent p-2 font-brush text-white">
+        <header className="absolute z-[450] h-full w-full bg-gradient-to-b from-secondary/80 to-50% p-2 font-brush text-white">
           <h1 className="drop-shadow-lg text-4xl">{city}</h1>
-          <h2 className="text-primary drop-shadow-lg text-xl">
-            {address}
-          </h2>
+          <h2 className="text-primary drop-shadow-lg text-xl">{address}</h2>
         </header>
       )}
     </div>
