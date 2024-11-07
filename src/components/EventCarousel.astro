@@ -1,0 +1,83 @@
+---
+import Swiper from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
+
+// Asegúrate de que `events` sea una lista de objetos con los detalles de cada evento.
+const { events } = Astro.props;
+---
+
+<div class="bg-gray-900 p-8 text-white w-full h-auto">
+  <h2 class="text-3xl font-bold mb-4 text-center">Eventos Futuros</h2>
+
+  <!-- Swiper container -->
+  <div class="swiper-container" style="width: 100%; max-width: 600px;">
+    <!-- Wrapper de los slides -->
+    <div class="swiper-wrapper">
+      {events.map((event) => (
+          <div class="swiper-slide flex justify-center" key={event.id}>
+            <a href={`/events/${event.id}`}>
+              <div class="w-full max-w-xs overflow-hidden rounded-lg bg-gray-800 shadow-lg">
+                <div class="relative">
+                  <img
+                      src={event.image}
+                      alt={event.title}
+                      class="h-48 w-full object-cover cursor-pointer"
+                  />
+                  {event.isFeatured && (
+                      <span class="absolute left-2 top-2 rounded-md bg-orange-500 px-3 py-1 font-semibold text-white text-sm">
+                    Destacado
+                  </span>
+                  )}
+                </div>
+                <div class="p-4">
+                  <h3 class="mb-2 font-bold text-xl">{event.title}</h3>
+                  <p class="mb-1 text-gray-400 text-sm">{event.location}</p>
+                  <p class="text-gray-400 text-sm">{event.date}</p>
+                  <p class="mt-2 font-bold">
+                    {event.isFree ? "Gratis" : `${event.price} €`}
+                  </p>
+                  <button class="mt-4 w-full rounded-md bg-orange-500 py-2 text-white transition-colors hover:bg-orange-600">
+                    Más Info
+                  </button>
+                </div>
+              </div>
+            </a>
+          </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<!-- Script de configuración Swiper -->
+<script>
+  import Swiper from 'swiper';
+
+  const swiper = new Swiper('.swiper-container', {
+    slidesPerView: 'auto',
+    spaceBetween: 0,
+    centeredSlides: true,
+    grabCursor: true,
+    parallax: true,
+    effect: 'coverflow',
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 10,
+      depth: 10,
+      scale: 0.8,
+      modifier: 1,
+      slideShadows: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    loop: true,
+  });
+</script>
