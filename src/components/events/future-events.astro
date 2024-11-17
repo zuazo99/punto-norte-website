@@ -3,9 +3,80 @@ import { fetchFutureEvents } from "../../lib/queries";
 import type { Event } from "../../types";
 import EventCard from "./event-card.astro";
 import ContentSection from "../content-section.astro";
+import EventCarousel from "../EventCarousel.astro";
+import {format} from "@formkit/tempo";
 
 const now = new Date();
 const futureEvents = await fetchFutureEvents(now.toISOString());
+const events = [
+  {
+    id: 1,
+    title: "Batalla Oilar Borroka",
+    location: "Merkatu, Portugalete",
+    date: "Miércoles 23 | 20:00",
+    isFree: false,
+    price: 15,
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+  },
+  {
+    id: 2,
+    title: "Copa del Norte",
+    location: "Santa Clara, Portugalete",
+    date: "15 de Agosto | 18:00",
+    isFree: true,
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+  },
+  {
+    id: 3,
+    title: "Concierto de Rap al Aire Libre",
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Parque Central",
+    date: "12 de Noviembre, 2024",
+    time: "18:00",
+    price: 15,
+    isFree: false,
+    isFeatured: true,
+  },
+  {
+    id: 4,
+    title: "Batalla de Freestyle",
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Club Underground",
+    date: "15 de Noviembre, 2024",
+    time: "20:00",
+    price: 10,
+    isFree: false,
+    isFeatured: false,
+  },
+  {
+    id: 5,
+    title: "Festival de Música Urbana",
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Estadio Municipal",
+    date: "20 de Noviembre, 2024",
+    time: "14:00",
+    price: 25,
+    isFree: false,
+    isFeatured: true,
+  },
+  {
+    id: 6,
+    title: "Encuentro de Graffiti y Hip-Hop",
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Centro Cultural",
+    date: "25 de Noviembre, 2024",
+    time: "16:00",
+    price: 0,
+    isFree: true,
+    isFeatured: false,
+  },
+];
 ---
 
 <ContentSection title="Eventos" id="events">
@@ -14,41 +85,122 @@ const futureEvents = await fetchFutureEvents(now.toISOString());
       <>
         <p> Proximamente... </p>
       </>
+      <section>
+          <!-- Contenedor principal de Swiper -->
+          <!-- Slider main container -->
+          <div class="swiper-container">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                  <!-- Slides -->
+                  <div class="swiper-slide">
+                      <img src="http://marveltheme.com/tf/html/appai/appai/img/app-screenshots/10.jpg" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                      <img src="http://marveltheme.com/tf/html/appai/appai/img/app-screenshots/11.jpg" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                      <img src="http://marveltheme.com/tf/html/appai/appai/img/app-screenshots/12.jpg" alt="">
+                  </div>
+              </div>
+              <!-- If we need navigation buttons -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+          </div>
+      </section>
     )
   }
-  <ul class="grid max-w-6xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-    {
-      futureEvents.eventCollection.items.map((event: Event) => (
-        <EventCard event={event} imageUrl={event.image.url} />
-      ))
-    }
-  </ul>
-  <div class="flex size-full flex-col justify-between overflow-x-hidden">
+  <!--<EventCarousel events={events}/>-->
+  <div class="flex flex-col justify-between w-full overflow-x-hidden">
     <div>
-      <div
-        class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        <div class="flex items-stretch gap-3 p-4">
-          {
-            futureEvents.eventCollection.items.map((event: Event) => (
-              <div class="flex h-full min-w-60 flex-1 flex-col gap-4 rounded-lg">
-                <div
-                  class="flex aspect-[3/4] w-full flex-col rounded-xl bg-cover bg-center bg-no-repeat"
-                  style={`background-image: url(${event.image.url});`}
-                />
-                <div>
-                  <p class="font-medium leading-normal text-base">
-                    {event.name}
-                  </p>
-                  <p class="font-normal leading-normal text-[#A18249] text-sm">
-                    Miércoles 23 | 20:00
-                  </p>
+      <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div class="flex items-stretch gap-6 p-4">
+          {futureEvents.eventCollection.items.map((event: Event) => (
+              <a href={`events/${event.sys.id}`} class="group">
+                <div class="flex h-full min-w-60 flex-1 flex-col gap-4 rounded-lg shadow-xl bg-[#1a1a1a] hover:scale-105 hover:shadow-2xl transition-all duration-300">
+                  <div class="relative flex aspect-[3/4] w-full rounded-xl bg-cover bg-center bg-no-repeat" style={`background-image: url(${event.image.url});`}>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-xl"></div>
+                  </div>
+                  <div class="px-4 pb-4">
+                    <p class="font-semibold text-base text-white font-brush group-hover:text-orange-400 transition-colors">{event.name}</p>
+                    <p class="font-normal text-sm text-orange-500">
+                      {format(event.date, 'dddd D | HH:mm', 'es')}
+                    </p>
+                    <div class="flex items-center mt-2 gap-2 text-gray-300 text-sm">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 14 14">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M2.5.5v13m0-13l9 4.5l-9 4.5" />
+                      </svg>
+                      <p class="font-light">{'Ubicación: Portugalete'}</p>
+                    </div>
+                    <div class="flex items-center mt-2 gap-2 text-gray-300 text-sm">
+                      <p class="font-light">
+                        Precio: {event.price ? `€${event.price}` : 'Gratis'}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))
-          }
+              </a>
+          ))}
         </div>
       </div>
     </div>
   </div>
+
+
+
 </ContentSection>
+
+<script>
+    // Core de Swiper y estilos
+    import Swiper from "swiper";
+    import "swiper/css";
+    // Módulo Navigation de Swiper y estilos
+    import { Navigation } from "swiper/modules";
+    import "swiper/css/navigation";
+
+    // Configurar Swiper
+    const swiper = new Swiper('.swiper-container', {
+        slidesPerView: 'auto',
+        spaceBetween: 0, //if you set the value other than 0, you will get some bug when viewport is resized, use CSS instead
+        centeredSlides: true,
+        grabCursor: true,
+        parallax: true,
+        effect: "coverflow",
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 10,
+            depth: 10,
+            scale: .8,
+            modifier: 1,
+            slideShadows: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+</script>
+
+<style>
+    .swiper-container {
+        width: 100%;
+        height: 200px;
+        margin-top: 2rem;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        width: 60%;
+        transform: scale(0.85);
+
+        /* Center slide text vertically */
+        box-sizing: border-box;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.2s ease-in;
+    }
+</style>
