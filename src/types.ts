@@ -35,7 +35,8 @@ export interface Event {
   sys: EventSys;
   name: string;
   image: EventImage;
-  date: string
+  date: string;
+  price: number;
 }
 
 export interface EventCollection {

@@ -4,6 +4,10 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      gridTemplateRows: {
+        '14': 'repeat(14, minmax(0, 1fr))',
+        '18': 'repeat(18, minmax(0, 1fr))',
+      },
       fontFamily: {
         sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
         start: "'Press Start 2P'",
@@ -11,7 +15,7 @@ module.exports = {
         brush: "'Good Brush'"
       },
       colors: {
-        primary: "#ec4899",
+        primary: "#f59e0b",
         secondary: "#14b8a6",
       },
       textColor: {

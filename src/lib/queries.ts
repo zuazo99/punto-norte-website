@@ -34,6 +34,7 @@ export async function fetchFutureEvents(fromDate: string): Promise<EventsData> {
           }
           name
           date
+          price
           image {
             url
           }
@@ -74,6 +75,16 @@ export async function fetchEventById(id: string): Promise<any> {
       event(id: "${id}") {
         name
         date
+        membersCollection{
+          items {
+            name
+            position
+            image {
+              url
+            }
+            instagram
+          }
+        }
         image {
           url
         }

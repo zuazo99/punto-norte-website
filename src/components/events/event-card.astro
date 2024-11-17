@@ -1,6 +1,6 @@
 ---
-import ImageGlow from '../image-glow.astro';
-import {Event} from "../../types";
+import ImageGlow from "../image-glow.astro";
+import { Event } from "../../types";
 interface Props {
   event: Event;
   imageUrl: string;
@@ -8,23 +8,12 @@ interface Props {
 
 const { event, imageUrl } = Astro.props;
 ---
-<!--<li class="flex h-full w-full flex-col items-center justify-center p-4 md:p-6 text-center">-->
-<!--  <a class="w-full group" href={event.sys.id}>-->
-<!--    <figure class="relative h-full w-full overflow-hidden rounded-2xl">-->
-<!--      <div-->
-<!--          class="h-64 md:h-80 w-full rounded-2xl bg-gray-700 bg-cover bg-center flex items-center justify-center px-4 bg-blend-multiply"-->
-<!--          style={imageStyle}-->
-<!--      >-->
-<!--      &lt;!&ndash; Título centrado &ndash;&gt;-->
-<!--      <h2 class="uppercase text-white text-2xl md:text-3xl font-brush text-center leading-tight">-->
-<!--        {event.name}-->
-<!--      </h2>-->
-<!--      </div>-->
-<!--    </figure>-->
-<!--  </a>-->
-<!--</li>-->
+
+<!--<li class="flex h-full w-full flex-col items-center justify-center p-4 md:p-6 text-center">--><!--  <a class="w-full group" href={event.sys.id}>--><!--    <figure class="relative h-full w-full overflow-hidden rounded-2xl">--><!--      <div--><!--          class="h-64 md:h-80 w-full rounded-2xl bg-gray-700 bg-cover bg-center flex items-center justify-center px-4 bg-blend-multiply"--><!--          style={imageStyle}--><!--      >--><!--      &lt;!&ndash; Título centrado &ndash;&gt;--><!--      <h2 class="uppercase text-white text-2xl md:text-3xl font-brush text-center leading-tight">--><!--        {event.name}--><!--      </h2>--><!--      </div>--><!--    </figure>--><!--  </a>--><!--</li>-->
 <li class="h-full w-full">
-  <ImageGlow id={event.sys.id} imageUrl={imageUrl} title={event.name} />
+  <a href=`events/${event.sys.id}`>
+    <ImageGlow id={event.sys.id} imageUrl={imageUrl} title={event.name} />
+  </a>
 </li>
 <!--<li-->
 <!--    class="flex h-full w-full flex-col items-center justify-center gap-4 p-4 md:p-6 text-center"-->
@@ -53,7 +42,6 @@ const { event, imageUrl } = Astro.props;
 <!--    </figure>-->
 <!--  </a>-->
 <!--</li>-->
-
 
 <script>
   function handleClick(eventId: string) {
