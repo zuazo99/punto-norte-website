@@ -1,13 +1,29 @@
 ---
-import MainLayout from "~/layouts/MainLayout.astro";
+import BaseLayout from "~/layouts/BaseLayout.astro";
 import Map from "~/components/events/Map";
 import Week from "~/components/events/Week";
 import Countdown from "~/components/events/Countdown";
-import Managers from "~/components/events/managers.astro";
+import Members from "~/components/events/members.astro";
 import RichText from "~/components/events/richText.astro";
 import { fetchEventById } from "~/lib/queries";
+import { Icon } from "astro-icon/components";
 
 export const prerender = false;
+
+interface IMembers {
+  items: Member[];
+}
+
+interface Member {
+  name: string;
+  position: string;
+  instagram: string;
+  image: Image;
+}
+
+interface Image {
+  url: string;
+}
 
 interface Location {
   lat: number;
@@ -16,11 +32,12 @@ interface Location {
 
 interface EventDetails {
   name: string;
-  content: { json: any };
+  content?: { json: any };
   image: { url: string };
   date: string;
   location: Location;
   locationAddress: string;
+  membersCollection: IMembers;
   locationCity: string;
 }
 
@@ -28,81 +45,74 @@ interface EventResponse {
   event: EventDetails;
 }
 
-const id = "55d79SukLiaGaFHF0VkDPI";
-// const { id } = Astro.params;
+const { id } = Astro.params;
 
 const { event }: EventResponse = await fetchEventById(id);
-const eventDate = new Date(event.date);
-const managers = [
-  {
-    image:
-      "https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1.jpeg",
-    position: "Juez",
-    name: "Gaizka Zuazo",
-    instagram: "https://www.instagram.com/gaizkazuazo_/",
-  },
-  {
-    image:
-      "https://i.pinimg.com/474x/ed/5a/27/ed5a277e8ff1f086d1c634e5713a9231.jpg",
-    position: "Juez",
-    name: "Jorge Mentxaka",
-    instagram: "https://www.instagram.com/jorgementx/",
-  },
-  {
-    image:
-      "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg",
-    position: "Juez",
-    name: "Ralph Lauren",
-  },
-  {
-    image: "https://cdn.myanimelist.net/images/voiceactors/2/54280.jpg",
-    position: "Host",
-    name: "Megan Fox",
-  },
-  {
-    image: "https://cdn.myanimelist.net/images/characters/13/29010.jpg",
-    position: "DJ",
-    name: "Alan Walker",
-  },
-];
+const eventDate = event.date ? new Date(event.date) : null;
 ---
 
-<MainLayout title="Bento">
-  <section class="h-screen w-screen p-24">
+<BaseLayout title={event.name}>
+  <a
+    href="/"
+    class="fixed left-4 top-4 rounded-full bg-primary text-white transition duration-300 hover:bg-secondary"
+  >
+    <Icon name="mdi:arrow-back" class="m-2 text-white text-5xl" />
+  </a>
+
+  <section class="h-screen w-screen px-2 py-24 md:px-24">
     <div
       id="bento-grid"
-      class="grid h-full w-full grid-cols-4 grid-rows-8 gap-4 *:translate-y-[100vh] *:overflow-hidden *:rounded-xl *:border-2 *:border-neutral-700 *:shadow-xl hover:*:border-primary"
+      class="lg:grid-rows-14 grid w-full grid-cols-1 gap-4 *:translate-y-[100vh] *:overflow-hidden *:rounded-xl *:border-2 *:border-neutral-700 *:shadow-2xl *:shadow-neutral-950 hover:*:border-primary lg:grid-cols-4 xl:h-full xl:grid-rows-8"
     >
-      <div class="col-span-2 row-span-8 bg-neutral-900 p-4">
-        <RichText content={event.content} />
+      {
+        event.content && (
+          <div class="bg-neutral-900 p-4 lg:col-span-2 lg:row-span-8 col-span-1">
+            <RichText content={event.content} />
+          </div>
+        )
+      }
+      {
+        eventDate && eventDate > new Date() && (
+          <div class=" bg-neutral-900 py-1 lg:col-span-2 xl:col-span-1 col-span-1">
+            <Countdown eventDate={eventDate} client:only="react" />
+          </div>
+        )
+      }
+      <div
+        class="group lg:col-span-2 lg:row-span-5 xl:col-span-1 xl:row-span-4 col-span-1 h-[700px] lg:h-full"
+        style={`background: url(${event.image.url}) center/cover no-repeat`}
+      >
       </div>
-      <div class="bg-neutral-900 py-1">
-        <Countdown eventDate={eventDate} client:only="react" />
-      </div>
-      <div class="group row-span-4 bg-neutral-900">
-        <img
-          class="mx-auto h-full w-full object-cover transition-all group-hover:w-96"
-          src={event.image.url}
-          alt=""
-        />
-      </div>
-      <div class="col-span-1 row-span-3">
-        <Week date={eventDate} />
-      </div>
-      <div class="row-span-4 bg-neutral-900 py-4">
-        <Managers managers={managers} />
-      </div>
-      <div class="row-span-4">
-        <Map
-          location={event.location}
-          city={event.locationCity}
-          address={event.locationAddress}
-          client:only="react"
-        />
-      </div>
+      {
+        eventDate && (
+          <div class="lg:col-span-2 lg:row-span-2 xl:col-span-1 xl:row-span-3 col-span-1">
+            <Week date={eventDate} />
+          </div>
+        )
+      }
+      {
+        event.membersCollection && event.membersCollection.items && (
+          <div class="bg-neutral-900 py-4 lg:col-span-2 lg:row-span-4 xl:col-span-1 col-span-1 h-96 md:h-full">
+            <Members members={event.membersCollection.items} />
+          </div>
+        )
+      }
+
+      {
+        event.location && (
+          <div class="lg:col-span-2 lg:row-span-4 xl:col-span-1 col-span-1 h-[700px] lg:h-full">
+            <Map
+              location={event.location}
+              city={event.locationCity}
+              address={event.locationAddress}
+              client:only="react"
+            />
+          </div>
+        )
+      }
     </div>
   </section>
-</MainLayout>
+</BaseLayout>
 
 <script>
   const children = document.querySelectorAll("#bento-grid>*");

@@ -4,24 +4,24 @@ import type { FooterLink } from "~/types";
 
 const links: Array<FooterLink> = [
   {
-    url: "https://astro.build/",
+    url: "",
     description: "Astro's official website",
     icon: "mdi:home",
   },
   {
-    url: "https://github.com/mhyfritz/astro-landing-page",
-    description: "View source on GitHub",
-    icon: "fa-brands:github-alt",
+    url: "",
+    description: "Código fuente en GitHub",
+    icon: "fa-brands:github",
   },
   {
-    url: "https://astro.build/chat",
-    description: "Astro on Discord",
-    icon: "fa-brands:discord",
+    url: "",
+    description: "Email",
+    icon: "mdi:envelope",
   },
   {
-    url: "https://twitter.com/astrodotbuild",
-    description: "Astro on Twitter",
-    icon: "fa-brands:twitter",
+    url: "",
+    description: "Instagram",
+    icon: "fa-brands:instagram",
   },
 ];
 ---
@@ -32,7 +32,7 @@ const links: Array<FooterLink> = [
       links.map((link) => (
         <li>
           <a
-            class="flex size-16 items-center justify-center rounded-full border-2 border-current p-4"
+            class="flex size-16 items-center justify-center rounded-full border-3 hover:bg-white/20 shadow-lg bg-white/10 border-current p-4"
             href={link.url}
           >
             <span class="sr-only">{link.description}</span>
