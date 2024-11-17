@@ -1,92 +1,169 @@
 ---
 import ImageGlow from "../components/image-glow.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
+
+import EventCarousel from "../components/EventCarousel.astro";
+
+const events = [
+    {
+        id: 1,
+        title: "Batalla Oilar Borroka",
+        location: "Merkatu, Portugalete",
+        date: "Miércoles 23 | 20:00",
+        isFree: false,
+        price: 15,
+        image:
+            "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    },
+    {
+        id: 2,
+        title: "Copa del Norte",
+        location: "Santa Clara, Portugalete",
+        date: "15 de Agosto | 18:00",
+        isFree: true,
+        image:
+            "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    },
+    {
+        id: 3,
+        title: "Concierto de Rap al Aire Libre",
+        image:
+            "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+        location: "Parque Central",
+        date: "12 de Noviembre, 2024",
+        time: "18:00",
+        price: 15,
+        isFree: false,
+        isFeatured: true,
+    },
+    {
+        id: 4,
+        title: "Batalla de Freestyle",
+        image:
+            "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+        location: "Club Underground",
+        date: "15 de Noviembre, 2024",
+        time: "20:00",
+        price: 10,
+        isFree: false,
+        isFeatured: false,
+    },
+    {
+        id: 5,
+        title: "Festival de Música Urbana",
+        image:
+            "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+        location: "Estadio Municipal",
+        date: "20 de Noviembre, 2024",
+        time: "14:00",
+        price: 25,
+        isFree: false,
+        isFeatured: true,
+    },
+    {
+        id: 6,
+        title: "Encuentro de Graffiti y Hip-Hop",
+        image:
+            "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+        location: "Centro Cultural",
+        date: "25 de Noviembre, 2024",
+        time: "16:00",
+        price: 0,
+        isFree: true,
+        isFeatured: false,
+    },
+];
 ---
 
 <MainLayout>
-  <section class="flex gap-4 bg-white m-2">
-    <div class="rounded-md bg-gradient-to-tr from-indigo-600 via-pink-600 to-purple-600 p-0.5">
-      <div
-          class="relative flex w-96 cursor-pointer flex-col rounded-xl border-black drop-shadow-xl
-      bg-white bg-clip-border text-gray-700 shadow-md"
-      >
+    <section class="m-2 flex gap-4 bg-white">
         <div
-            class="relative mx-4 mt-4 h-96 overflow-hidden rounded-xl bg-white bg-clip-border
-        text-gray-700"
+                class="rounded-md bg-gradient-to-tr from-indigo-600 via-pink-600 to-purple-600 p-0.5"
         >
-          <a
-              class="group absolute end-2 top-2 isolation-auto z-10 mx-auto flex items-center
+            <div
+                    class="relative flex w-96 cursor-pointer flex-col rounded-xl border-black bg-white
+      bg-clip-border text-gray-700 shadow-md drop-shadow-xl"
+            >
+                <div
+                        class="relative mx-4 mt-4 h-96 overflow-hidden rounded-xl bg-white bg-clip-border
+        text-gray-700"
+                >
+                    <a
+                            class="group absolute end-2 top-2 isolation-auto z-10 mx-auto flex items-center
           justify-center gap-2 overflow-hidden rounded-full
           border-2 border-gray-50 bg-gray-50 px-4 py-2 shadow-xl
           backdrop-blur-md text-lg before:absolute before:-left-full
           before:-z-10 before:aspect-square before:w-full before:rounded-full before:bg-emerald-500
           before:transition-all before:duration-700 hover:text-gray-50 before:hover:left-0 before:hover:w-full
           before:hover:scale-150 before:hover:duration-700 lg:font-semibold"
-          >
-            Mapa
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                viewBox="0 0 512 512"
-            >
-              <path
-                  fill="currentColor"
-                  d="M256 32C167.67 32 96 96.51 96 176c0 128 160 304 160 304s160-176 160-304c0-79.49-71.67-144-160-144m0 224a64 64 0 1 1 64-64a64.07 64.07 0 0 1-64 64"
-              ></path>
-            </svg>
-          </a>
-          <img
-              src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
-              alt="card-image"
-              class="h-full w-full object-cover outline-amber-500"
-          />
-        </div>
-        <div class="p-6">
-          <div class="mb-2 flex items-center justify-between">
-            <p
-                class="text-white block font-brush font-medium leading-relaxed antialiased text-base"
-            >
-              Apple AirPods
-            </p>
-            <p
-                class="text-white block font-sans font-medium leading-relaxed antialiased text-base"
-            >
-              $95.00
-            </p>
-          </div>
-          <p
-              class="block font-sans font-normal leading-normal text-white antialiased opacity-75 text-sm"
-          >
-            With plenty of talk and listen time, voice-activated Siri access, and
-            an available wireless charging case.
-          </p>
-        </div>
-        <div class="p-6 pt-0">
-          <a
-              class="bg-blue-gray-900/10 text-white block w-full select-none rounded-lg px-6 py-3
-          text-center align-middle font-sans font-bold
-          uppercase shadow-none shadow-gray-900/10
+                    >
+                        Mapa
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="32"
+                                height="32"
+                                viewBox="0 0 512 512"
+                        >
+                            <path
+                                    fill="currentColor"
+                                    d="M256 32C167.67 32 96 96.51 96 176c0 128 160 304 160 304s160-176 160-304c0-79.49-71.67-144-160-144m0 224a64 64 0 1 1 64-64a64.07 64.07 0 0 1-64 64"
+                            ></path>
+                        </svg>
+                    </a>
+                    <img
+                            src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
+                            alt="card-image"
+                            class="h-full w-full object-cover outline-amber-500"
+                    />
+                </div>
+                <div class="p-6">
+                    <div class="mb-2 flex items-center justify-between">
+                        <p
+                                class="block font-brush font-medium leading-relaxed text-gray-800 antialiased text-base"
+                        >
+                            Apple AirPods
+                        </p>
+                        <p
+                                class="block font-sans font-medium leading-relaxed text-gray-800 antialiased text-base"
+                        >
+                            $95.00
+                        </p>
+                    </div>
+                    <p
+                            class="block font-sans font-normal leading-normal text-gray-800 antialiased opacity-75 text-sm"
+                    >
+                        With plenty of talk and listen time, voice-activated Siri access,
+                        and an available wireless charging case.
+                    </p>
+                </div>
+                <div class="p-6 pt-0">
+                    <a
+                            class="bg-blue-gray-900/10 block w-full select-none rounded-lg px-6 py-3 text-center
+          align-middle font-sans font-bold uppercase
+          text-gray-800 shadow-none shadow-gray-900/10
           transition-all text-xs hover:scale-105 hover:shadow-none hover:shadow-gray-900/20 focus:scale-105
           focus:opacity-[0.85] focus:shadow-none
           active:scale-100 active:opacity-[0.85] active:shadow-none
           disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              type="button">Más Info</a
-          >
+                            type="button">Más Info</a
+                    >
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div
-        class="relative drop-shadow-xl w-48 h-64 overflow-hidden rounded-xl bg-[#3d3c3d]"
-    >
-      <div
-          class="absolute flex items-center justify-center text-white z-[1] opacity-90 rounded-xl inset-0.5 bg-[#323132]"
-      >
-        CARD
-      </div>
-      <div class="absolute w-56 h-48 bg-white blur-[50px] -left-1/2 -top-1/2"></div>
-    </div>
-
-  </section>
+        <div
+                class="relative h-64 w-48 overflow-hidden rounded-xl bg-[#3d3c3d] drop-shadow-xl"
+        >
+            <div
+                    class="absolute inset-0.5 z-[1] flex items-center justify-center rounded-xl bg-[#323132] text-white opacity-90"
+            >
+                CARD
+            </div>
+            <div class="absolute -left-1/2 -top-1/2 h-48 w-56 bg-white blur-[50px]">
+            </div>
+        </div>
+    </section>
+    <section>
+        <EventCarousel events={events}/>
+    </section>
 </MainLayout>

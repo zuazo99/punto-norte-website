@@ -9,17 +9,15 @@ import 'swiper/css/effect-coverflow';
 const { events } = Astro.props;
 ---
 
-<div class="bg-gray-900 p-8 text-white w-full h-auto">
-  <h2 class="text-3xl font-bold mb-4 text-center">Eventos Futuros</h2>
-
+<div class="bg-gray-900 p-8 text-white w-full">
   <!-- Swiper container -->
-  <div class="swiper-container" style="width: 100%; max-width: 600px;">
+  <div class="swiper-container">
     <!-- Wrapper de los slides -->
     <div class="swiper-wrapper">
       {events.map((event) => (
           <div class="swiper-slide flex justify-center" key={event.id}>
             <a href={`/events/${event.id}`}>
-              <div class="w-full max-w-xs overflow-hidden rounded-lg bg-gray-800 shadow-lg">
+              <div class="overflow-hidden rounded-lg bg-gray-800 shadow-lg">
                 <div class="relative">
                   <img
                       src={event.image}
@@ -59,17 +57,6 @@ const { events } = Astro.props;
     slidesPerView: 'auto',
     spaceBetween: 0,
     centeredSlides: true,
-    grabCursor: true,
-    parallax: true,
-    effect: 'coverflow',
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 10,
-      depth: 10,
-      scale: 0.8,
-      modifier: 1,
-      slideShadows: false,
-    },
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
@@ -78,6 +65,5 @@ const { events } = Astro.props;
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
-    loop: true,
   });
 </script>

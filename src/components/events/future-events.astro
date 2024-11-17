@@ -3,9 +3,80 @@ import { fetchFutureEvents } from "../../lib/queries";
 import type { Event } from "../../types";
 import EventCard from "./event-card.astro";
 import ContentSection from "../content-section.astro";
+import EventCarousel from "../EventCarousel.astro";
+import {format} from "@formkit/tempo";
 
 const now = new Date();
 const futureEvents = await fetchFutureEvents(now.toISOString());
+const events = [
+  {
+    id: 1,
+    title: "Batalla Oilar Borroka",
+    location: "Merkatu, Portugalete",
+    date: "Miércoles 23 | 20:00",
+    isFree: false,
+    price: 15,
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+  },
+  {
+    id: 2,
+    title: "Copa del Norte",
+    location: "Santa Clara, Portugalete",
+    date: "15 de Agosto | 18:00",
+    isFree: true,
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+  },
+  {
+    id: 3,
+    title: "Concierto de Rap al Aire Libre",
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Parque Central",
+    date: "12 de Noviembre, 2024",
+    time: "18:00",
+    price: 15,
+    isFree: false,
+    isFeatured: true,
+  },
+  {
+    id: 4,
+    title: "Batalla de Freestyle",
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Club Underground",
+    date: "15 de Noviembre, 2024",
+    time: "20:00",
+    price: 10,
+    isFree: false,
+    isFeatured: false,
+  },
+  {
+    id: 5,
+    title: "Festival de Música Urbana",
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Estadio Municipal",
+    date: "20 de Noviembre, 2024",
+    time: "14:00",
+    price: 25,
+    isFree: false,
+    isFeatured: true,
+  },
+  {
+    id: 6,
+    title: "Encuentro de Graffiti y Hip-Hop",
+    image:
+        "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Centro Cultural",
+    date: "25 de Noviembre, 2024",
+    time: "16:00",
+    price: 0,
+    isFree: true,
+    isFeatured: false,
+  },
+];
 ---
 
 <ContentSection title="Eventos" id="events">
@@ -38,41 +109,45 @@ const futureEvents = await fetchFutureEvents(now.toISOString());
       </section>
     )
   }
-  <ul class="grid max-w-6xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-    {
-      futureEvents.eventCollection.items.map((event: Event) => (
-        <EventCard event={event} imageUrl={event.image.url} />
-      ))
-    }
-  </ul>
-  <div class="flex size-full flex-col justify-between overflow-x-hidden">
+  <!--<EventCarousel events={events}/>-->
+  <div class="flex flex-col justify-between w-full overflow-x-hidden">
     <div>
       <div
-        class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        <div class="flex items-stretch gap-3 p-4">
-          {
-            futureEvents.eventCollection.items.map((event: Event) => (
-              <div class="flex h-full min-w-60 flex-1 flex-col gap-4 rounded-lg">
+        <div class="flex items-stretch gap-6 p-4">
+          {futureEvents.eventCollection.items.map((event: Event) => (
+              <div
+                  class="flex h-full min-w-60 flex-1 flex-col gap-4 rounded-lg shadow-lg bg-[#1a1a1a] hover:scale-105 transition-transform duration-300"
+              >
                 <div
-                  class="flex aspect-[3/4] w-full flex-col rounded-xl bg-cover bg-center bg-no-repeat"
-                  style={`background-image: url(${event.image.url});`}
-                />
-                <div>
-                  <p class="font-medium leading-normal text-base">
+                    class="relative flex aspect-[3/4] w-full rounded-xl bg-cover bg-center bg-no-repeat"
+                    style={`background-image: url(${event.image.url});`}
+                >
+                  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-xl"></div>
+                </div>
+                <div class="px-3 pb-4">
+                  <p class="font-semibold leading-normal text-base text-white font-brush">
                     {event.name}
                   </p>
-                  <p class="font-normal leading-normal text-[#A18249] text-sm">
-                    Miércoles 23 | 20:00
+                  <p class="font-normal leading-normal text-orange-500 text-sm" >
+                    {format(event.date, 'dddd D | HH:mm', 'es')}
+                  </p>
+                  <p class="font-light text-gray-400 text-sm mt-1">
+                    Ubicación: Portugalete
+                  </p>
+                  <p class="font-light text-gray-400 text-sm">
+                    Precio: {event.price ? `€${event.price}` : 'Gratis'}
                   </p>
                 </div>
               </div>
-            ))
-          }
+          ))}
         </div>
       </div>
     </div>
   </div>
+
+
 </ContentSection>
 
 <script>

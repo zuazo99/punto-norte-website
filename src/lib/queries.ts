@@ -34,6 +34,7 @@ export async function fetchFutureEvents(fromDate: string): Promise<EventsData> {
           }
           name
           date
+          price
           image {
             url
           }
