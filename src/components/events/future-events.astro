@@ -1,9 +1,7 @@
 ---
 import { fetchFutureEvents } from "../../lib/queries";
 import type { Event } from "../../types";
-import EventCard from "./event-card.astro";
 import ContentSection from "../content-section.astro";
-import EventCarousel from "../EventCarousel.astro";
 import {format} from "@formkit/tempo";
 
 const now = new Date();
@@ -85,28 +83,6 @@ const events = [
       <>
         <p> Proximamente... </p>
       </>
-      <section>
-          <!-- Contenedor principal de Swiper -->
-          <!-- Slider main container -->
-          <div class="swiper-container">
-              <!-- Additional required wrapper -->
-              <div class="swiper-wrapper">
-                  <!-- Slides -->
-                  <div class="swiper-slide">
-                      <img src="http://marveltheme.com/tf/html/appai/appai/img/app-screenshots/10.jpg" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                      <img src="http://marveltheme.com/tf/html/appai/appai/img/app-screenshots/11.jpg" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                      <img src="http://marveltheme.com/tf/html/appai/appai/img/app-screenshots/12.jpg" alt="">
-                  </div>
-              </div>
-              <!-- If we need navigation buttons -->
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
-          </div>
-      </section>
     )
   }
   <!--<EventCarousel events={events}/>-->
@@ -144,63 +120,4 @@ const events = [
       </div>
     </div>
   </div>
-
-
-
 </ContentSection>
-
-<script>
-    // Core de Swiper y estilos
-    import Swiper from "swiper";
-    import "swiper/css";
-    // Módulo Navigation de Swiper y estilos
-    import { Navigation } from "swiper/modules";
-    import "swiper/css/navigation";
-
-    // Configurar Swiper
-    const swiper = new Swiper('.swiper-container', {
-        slidesPerView: 'auto',
-        spaceBetween: 0, //if you set the value other than 0, you will get some bug when viewport is resized, use CSS instead
-        centeredSlides: true,
-        grabCursor: true,
-        parallax: true,
-        effect: "coverflow",
-        coverflowEffect: {
-            rotate: 0,
-            stretch: 10,
-            depth: 10,
-            scale: .8,
-            modifier: 1,
-            slideShadows: false,
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-    });
-</script>
-
-<style>
-    .swiper-container {
-        width: 100%;
-        height: 200px;
-        margin-top: 2rem;
-    }
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        width: 60%;
-        transform: scale(0.85);
-
-        /* Center slide text vertically */
-        box-sizing: border-box;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.2s ease-in;
-    }
-</style>
