@@ -1,0 +1,77 @@
+---
+import ContentSection from "../content-section.astro";
+import FutureEvents from "./FutureEvents";
+const events = [
+  {
+    id: 1,
+    title: "Batalla Oilar Borroka",
+    location: "Merkatu, Portugalete",
+    date: "Miércoles 23 | 20:00",
+    isFree: false,
+    price: 15,
+    image:
+      "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+  },
+  {
+    id: 2,
+    title: "Copa del Norte",
+    location: "Santa Clara, Portugalete",
+    date: "15 de Agosto | 18:00",
+    isFree: true,
+    image:
+      "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+  },
+  {
+    id: 3,
+    title: "Concierto de Rap al Aire Libre",
+    image:
+      "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Parque Central",
+    date: "12 de Noviembre, 2024",
+    time: "18:00",
+    price: 15,
+    isFree: false,
+    isFeatured: true,
+  },
+  {
+    id: 4,
+    title: "Batalla de Freestyle",
+    image:
+      "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Club Underground",
+    date: "15 de Noviembre, 2024",
+    time: "20:00",
+    price: 10,
+    isFree: false,
+    isFeatured: false,
+  },
+  {
+    id: 5,
+    title: "Festival de Música Urbana",
+    image:
+      "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Estadio Municipal",
+    date: "20 de Noviembre, 2024",
+    time: "14:00",
+    price: 25,
+    isFree: false,
+    isFeatured: true,
+  },
+  {
+    id: 6,
+    title: "Encuentro de Graffiti y Hip-Hop",
+    image:
+      "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+    location: "Centro Cultural",
+    date: "25 de Noviembre, 2024",
+    time: "16:00",
+    price: 0,
+    isFree: true,
+    isFeatured: false,
+  },
+];
+---
+
+<ContentSection title="Eventos" id="events">
+  <FutureEvents client:only="react" />
+</ContentSection>
