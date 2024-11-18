@@ -9,10 +9,12 @@ function FutureEvents() {
   const [events, setEvents] = useState<Event[]>([]);
   useEffect(() => {
     const now = new Date();
-    fetchFutureEvents(now.toISOString()).then((events) => {
-      console.log("Eventos: ", events);
-      setEvents(events.eventCollection.items);
-    });
+    fetchFutureEvents(now.toISOString())
+      .then((events) => {
+        console.log("Eventos: ", events);
+        setEvents(events.eventCollection.items);
+      })
+      .catch(() => console.log("No events found."));
   }, []);
 
   if (events.length < 1) {
