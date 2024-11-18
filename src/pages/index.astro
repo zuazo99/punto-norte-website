@@ -7,7 +7,7 @@ import Intro from "~/components/intro.astro";
 import Showcase from "~/components/showcase.astro";
 
 import PastEvents from "../components/events/past-events.astro";
-import FutureEvents from "../components/events/future-events.astro";
+import FutureEventsSection from "../components/events/future-events-section.astro";
 import Partners from "../components/partners.astro";
 
 ---
@@ -16,7 +16,7 @@ import Partners from "../components/partners.astro";
   <Splash />
   <main class="space-y-24 px-8 py-32">
     <Intro />
-    <FutureEvents client:load/>
+    <FutureEventsSection />
     <PastEvents />
     <Partners />
   </main>
