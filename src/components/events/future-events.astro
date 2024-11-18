@@ -1,0 +1,30 @@
+---
+import type { Event } from "~/types.ts";
+import FutureEventCard from "./future-event-card.astro";
+
+interface Props {
+  events: Event[];
+}
+const { events } = Astro.props;
+---
+
+{
+  events.length < 1 && (
+    <>
+      <p> Proximamente... </p>
+    </>
+  )
+}
+
+<div class="flex w-full flex-col justify-between overflow-x-hidden">
+  <div>
+    <div
+      class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+    >
+      <div class="flex items-stretch gap-6 p-4">
+        {events.map((event: Event) => <FutureEventCard event={event} />)}
+      </div>
+    </div>
+  </div>
+</div>
+} export default FutureEvents;
