@@ -1,9 +1,9 @@
 import type { EventsData } from "~/types.ts";
 
-const SPACE_ID = import.meta.env.PUBLIC_CONTENTFUL_SPACE_ID;
+const SPACE_ID = import.meta.env.CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = import.meta.env.DEV
-  ? import.meta.env.PUBLIC_CONTENTFUL_PREVIEW_TOKEN
-  : import.meta.env.PUBLIC_CONTENTFUL_DELIVERY_TOKEN;
+  ? import.meta.env.CONTENTFUL_PREVIEW_TOKEN
+  : import.meta.env.CONTENTFUL_DELIVERY_TOKEN;
 const ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}`;
 
 export async function queryGraphQL(query: string): Promise<EventsData> {
