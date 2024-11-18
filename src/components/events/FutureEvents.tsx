@@ -3,6 +3,8 @@ import { fetchFutureEvents } from "~/lib/queries.ts";
 import type { Event } from "~/types.ts";
 import FutureEventCard from "./FutureEventCard.tsx";
 
+export const prerender = false;
+
 function FutureEvents() {
   const [events, setEvents] = useState<Event[]>([]);
   useEffect(() => {
