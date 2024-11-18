@@ -8,16 +8,8 @@ interface Props {
 
 const { event, imageUrl } = Astro.props;
 ---
-<li class="h-full w-full">
+<li class="h-full w-full max-w-sm mx-auto">
   <a href=`events/${event.sys.id}`>
     <ImageGlow id={event.sys.id} imageUrl={imageUrl} title={event.name} />
   </a>
 </li>
-
-<script>
-  function handleClick(eventId: string) {
-    window.location.href = `/events/${eventId}`;
-  }
-
-  //document.getElementById("event").addEventListener("click", handleClick());
-</script>
