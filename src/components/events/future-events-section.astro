@@ -4,6 +4,8 @@ import FutureEvents from "./future-events.astro";
 import { GET } from "../../pages/api/future-events.json";
 export const prerender = false;
 const futureEvents = await GET().then((res) => res.json());
+console.log(futureEvents); // Esto debe mostrar los datos en la consola del navegador
+
 ---
 
 <ContentSection title="Eventos" id="events">
