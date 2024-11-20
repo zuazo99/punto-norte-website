@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 src/pages/tests.astro
 src/pages/test.astro
+
+.vscode
+.idea
