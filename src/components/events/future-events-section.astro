@@ -1,9 +1,9 @@
 ---
 import ContentSection from "../content-section.astro";
 import FutureEvents from "./future-events.astro";
-import { GET } from "../../pages/api/future-events";
+import { GET } from "../../pages/api/future-events.json";
 export const prerender = false;
-const futureEvents = await fetch('/api/future-events').then((res) => res.json());
+const futureEvents = await GET().then((res) => res.json());
 ---
 
 <ContentSection title="Eventos" id="events">
