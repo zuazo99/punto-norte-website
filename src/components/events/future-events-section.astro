@@ -1,13 +1,13 @@
 ---
-import {fetchFutureEvents} from "../../lib/queries";
-
 import ContentSection from "../content-section.astro";
 import FutureEvents from "./future-events.astro";
+import { GET } from "../../pages/api/future-events.json";
 export const prerender = false;
-const now = new Date();
-const futureEvents = await fetchFutureEvents(now.toISOString());
+const futureEvents = await GET().then((res) => res.json());
+console.log(futureEvents); // Esto debe mostrar los datos en la consola del navegador
+
 ---
 
 <ContentSection title="Eventos" id="events">
-  <FutureEvents events={futureEvents.eventCollection.items}/>
+  <FutureEvents events={futureEvents.eventCollection.items} />
 </ContentSection>
