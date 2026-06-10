@@ -1,44 +1,89 @@
-# Astro Landing Page <picture><source media="(prefers-color-scheme: dark)" srcset="https://astro.build/assets/press/astro-icon-light.png"><source media="(prefers-color-scheme: light)" srcset="https://astro.build/assets/press/astro-icon-dark.png"><img align="right" valign="center" height="79" width="63" src="https://astro.build/assets/press/astro-icon-dark.png" alt="Astro logo" /></picture>
+# Punto Norte — Website
 
-> An Astro + Tailwind CSS example/template for landing pages.
+Sitio web del local Punto Norte. Incluye página de inicio y sección de eventos (listado y detalle), con Contentful como CMS headless y despliegue continuo en Vercel.
 
-<div align="center">
+## Stack
 
-[![Built with Astro](https://astro.badg.es/v2/built-with-astro/small.svg)](https://astro.build)
+| Capa | Tecnología |
+|---|---|
+| Framework | [Astro 6](https://astro.build) — output estático con páginas SSR on-demand vía `prerender = false` |
+| UI / Islands | [React 18](https://react.dev) para componentes interactivos |
+| Estilos | [Tailwind CSS v3](https://tailwindcss.com) + tipografía fluida |
+| Carrusel | [Swiper 12](https://swiperjs.com) |
+| Mapa | [Leaflet](https://leafletjs.com) |
+| CMS | [Contentful](https://www.contentful.com) vía GraphQL (`src/lib/queries.ts`) |
+| Imágenes | [Sharp](https://sharp.pixelplumbing.com) (procesado interno de Astro) |
+| Despliegue | [Vercel](https://vercel.com) — adapter serverless |
 
-</div>
+## Requisitos
 
-![Screenshots of Astro Landing Page](screenshots.jpg)
+- Node.js **≥ 22.12.0** (requerido por Astro 6)
+- npm **≥ 9.6.5**
 
-## Features
+## Variables de entorno
 
-- 💨 Tailwind CSS for styling
-- 🎨 Themeable
-  - CSS variables are defined in `src/styles/theme.css` and mapped to Tailwind classes (`tailwind.config.cjs`)
-- 🌙 Dark mode
-- 📱 Responsive (layout, images, typography)
-- ♿ Accessible (as measured by https://web.dev/measure/)
-- 🔎 SEO-enabled (as measured by https://web.dev/measure/)
-- 🔗 Open Graph tags for social media sharing
-- 💅 [Prettier](https://prettier.io/) setup for both [Astro](https://github.com/withastro/prettier-plugin-astro) and [Tailwind](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
+Copia `.env.example` a `.env` y rellena los valores de tu espacio Contentful:
 
-## Commands
+```bash
+cp .env.example .env
+```
 
-| Command                | Action                                            |
-| :--------------------- | :------------------------------------------------ |
-| `npm install`          | Install dependencies                              |
-| `npm run dev`          | Start local dev server at `localhost:4321`        |
-| `npm run build`        | Build your production site to `./dist/`           |
-| `npm run preview`      | Preview your build locally, before deploying      |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check`  |
-| `npm run astro --help` | Get help using the Astro CLI                      |
-| `npm run format`       | Format code with [Prettier](https://prettier.io/) |
-| `npm run clean`        | Remove `node_modules` and build output            |
+| Variable | Descripción |
+|---|---|
+| `CONTENTFUL_SPACE_ID` | ID del espacio Contentful |
+| `CONTENTFUL_DELIVERY_TOKEN` | Token de la Content Delivery API (producción) |
+| `CONTENTFUL_PREVIEW_TOKEN` | Token de la Content Preview API (desarrollo) |
 
-## Credits
+En desarrollo se usa `CONTENTFUL_PREVIEW_TOKEN`; en producción `CONTENTFUL_DELIVERY_TOKEN`.
 
-- astronaut image
-  - source: https://github.com/withastro/astro-og-image; note: this repo is not available anymore
-- moon image
-  - source: https://unsplash.com/@nasa
-- other than that, a lot of material (showcase data, copy) was taken from official Astro sources, in particular https://astro.build/blog/introducing-astro/ and https://github.com/withastro/astro.build
+## Instalación y desarrollo
+
+```bash
+npm install
+npm run dev        # servidor en http://localhost:3000
+```
+
+## Scripts
+
+| Comando | Descripción |
+|---|---|
+| `npm run dev` | Servidor de desarrollo en `localhost:3000` |
+| `npm run build` | Genera el sitio de producción en `./dist/` |
+| `npm run preview` | Previsualiza el build localmente |
+| `npm run format` | Formatea código con Prettier |
+| `npm run clean` | Elimina `node_modules` y el output de build |
+| `npm run astro ...` | CLI de Astro (`astro check`, `astro add`, etc.) |
+
+## Estructura del proyecto
+
+```
+src/
+├── assets/          # Iconos SVG y recursos estáticos
+├── components/      # Componentes Astro y React
+│   └── events/      # Componentes específicos de eventos (mapa, carrusel, etc.)
+├── layouts/         # Layouts base de página
+├── lib/
+│   └── queries.ts   # Funciones de fetch a la API GraphQL de Contentful
+├── pages/
+│   ├── index.astro  # Página de inicio (estática)
+│   └── events/
+│       └── [id].astro  # Detalle de evento (SSR — prerender = false)
+├── styles/          # CSS global y tema Tailwind
+└── types.ts         # Tipos TypeScript compartidos
+```
+
+## Despliegue en Vercel
+
+El despliegue es automático al hacer push a `main`. Vercel detecta el adapter y construye el proyecto.
+
+Configura las variables de entorno en el dashboard de Vercel:
+**Project → Settings → Environment Variables** → añade `CONTENTFUL_SPACE_ID`, `CONTENTFUL_DELIVERY_TOKEN` y `CONTENTFUL_PREVIEW_TOKEN`.
+
+## Seguridad de dependencias
+
+```bash
+npm audit          # revisa vulnerabilidades
+npm audit fix      # aplica correcciones automáticas
+```
+
+Mantén las dependencias actualizadas periódicamente. Las versiones mínimas requeridas para estar libre de vulnerabilidades conocidas están fijadas en `package.json > overrides`.
