@@ -1,6 +1,8 @@
 import { fetchFutureEvents } from "~/lib/queries.ts";
 import type { EventsData } from "~/types.ts";
 
+export const prerender = false;
+
 export async function GET(): Promise<Response> {
   try {
     const now = new Date().toISOString();
